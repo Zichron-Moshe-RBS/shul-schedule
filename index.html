@@ -158,7 +158,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div class="main">
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
-    <button class="tab-btn" onclick="sw('shabbat')">חג השבועות ושבת</button>
+    <button class="tab-btn" onclick="sw('shabbat')">שבת קרובה</button>
     <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
@@ -210,66 +210,10 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   </div>
 
   <div class="tab-content" id="tab-shabbat">
-    <div style="background:#f5f0e8;border:1.5px solid #c9a96e;border-radius:12px;padding:.8rem 1rem;margin-bottom:1rem;text-align:center;direction:rtl;">
-      <div style="font-size:.78rem;color:#5c3500;font-weight:600;">⚠️ תזכורת עירוב תבשילין</div>
-    </div>
-
-    <div class="fb">
-      <div class="fb-hdr">ערב חג השבועות</div>
-      <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
-      <div class="fr"><span class="fl">הדלקת נרות יו"ט</span><span class="ft" style="color:#c9a96e;font-weight:700;">18:56</span></div>
-      <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">19:21</span></div>
-      <div class="fr"><span class="fl">שקיעה</span><span class="ft">19:36</span></div>
-    </div>
-
-    <div class="fb">
-      <div class="fb-hdr">ליל חג השבועות</div>
-      <div class="fr"><span class="fl">דרשה — הרב צבי הכהן דוידוביץ שליט"א</span><span class="ft">19:35</span></div>
-      <div class="fr"><span class="fl">מעריב</span><span class="ft">20:00</span></div>
-      <div class="fr"><span class="fl">סדר לימוד מיוחד לילדים — אבות ובנים</span><span class="ft">23:15–24:00</span></div>
-      <div style="background:#f5f0e8;padding:.3rem 1rem;font-size:.75rem;font-weight:600;color:#5c3500;">סדר לימוד ליל שבועות</div>
-      <div class="fr"><span class="fl">דרשה — הרב קירשנבוים שליט"א</span><span class="ft">24:00</span></div>
-      <div class="fr"><span class="fl">דף יומי — ר' זילבר</span><span class="ft">00:45</span></div>
-    </div>
-
-    <div class="fb">
-      <div class="fb-hdr">חג השבועות</div>
-      <div class="fr"><span class="fl">עטיפת טלית</span><span class="ft">4:42</span></div>
-      <div class="fr"><span class="fl">שחרית ותיקין</span><span class="ft" style="font-weight:700;">5:05</span></div>
-      <div class="fr"><span class="fl">הא-ל</span><span class="ft">5:30</span></div>
-      <div class="fr"><span class="fl">יזכור (משוער)</span><span class="ft">6:35</span></div>
-      <div class="fr"><span class="fl">שחרית ב'</span><span class="ft" style="font-weight:700;">8:30</span></div>
-      <div class="fr"><span class="fl">הא-ל</span><span class="ft">8:55</span></div>
-      <div class="fr"><span class="fl">יזכור (משוער)</span><span class="ft">10:10</span></div>
-      <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
-      <div class="fb" style="margin:0;">
-        <div class="fb-hdr">שבת פרשת נשא — אסרו חג</div>
-        <div class="fr"><span class="fl">שבת מוקדם</span><span class="ft">17:52</span></div>
-        <div class="fr"><span class="fl">הדלקת נרות שבת</span><span class="ft" style="color:#c9a96e;font-weight:700;">18:57</span></div>
-        <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">19:22</span></div>
-        <div class="fr"><span class="fl">שקיעה</span><span class="ft">19:37</span></div>
-        <div class="fr"><span class="fl">מעריב</span><span class="ft">19:57</span></div>
-        <div class="fr"><span class="fl">שחרית</span><span class="ft">8:30</span></div>
-        <div class="fr"><span class="fl">שוכן עד</span><span class="ft">8:55</span></div>
-        <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
-      </div>
-      <div class="fb" style="margin:0;">
-        <div class="fb-hdr">שבת — אחה"צ ומוצ"ש</div>
-        <div class="fr"><span class="fl">דף יומי — ר' זילבר</span><span class="ft">17:20</span></div>
-        <div class="fr"><span class="fl">אבות ובנים</span><span class="ft">18:05</span></div>
-        <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">18:40</span></div>
-        <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">18:57</span></div>
-        <div class="fr"><span class="fl">מעריב / צאת השבת</span><span class="ft">20:15</span></div>
-        <div class="fr"><span class="fl">מעריב ב'</span><span class="ft">20:35</span></div>
-        <div class="fr"><span class="fl">דף יומי — ר' באום</span><span class="ft">21:30</span></div>
-      </div>
-    </div>
+    <div class="sh-block" id="shabbatBlock"></div>
   </div>
 
-  <div class="tab-content" id="tab-fixed">
+    <div class="tab-content" id="tab-fixed">
     <div class="sec-title">ימות החול</div>
     <div class="fb">
       <div class="fr"><span class="fl">שחרית א׳</span><span class="ft">6:15 (ברכו 6:25)</span></div>
@@ -323,7 +267,6 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   <div class="tab-content" id="tab-ann">
     <div class="sec-title">הודעות כלליות</div>
     <div id="annList">
-      <div class="ann-item"><div class="ann-txt">משפחת אליהו סלמון מזמינה את הציבור לקידוש בש"ק פרשת נשא לאחר התפילה, לע"נ האבא הרב מרדכי ב"ר שלמה הלוי ז"ל.</div></div>
       <div class="ann-item"><div class="ann-txt">מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב.</div></div>
     </div>
   </div>
@@ -1036,15 +979,15 @@ function sw(name){
 }
 
 updateClock();
-updateNext();
-renderZmanim();
-renderToday();
-renderShabbat();
-renderFixed();
-renderCal();
-renderAnns();
+try{updateNext();}catch(e){}
+try{renderZmanim();}catch(e){}
+try{renderToday();}catch(e){}
+try{renderShabbat();}catch(e){}
+try{renderFixed();}catch(e){}
+try{renderCal();}catch(e){}
+try{renderAnns();}catch(e){}
 setInterval(updateClock,1000);
-setInterval(function(){updateNext();renderToday();},30000);
+setInterval(function(){try{updateNext();}catch(e){} try{renderToday();}catch(e){}},30000);
 </script>
 </body>
 </html>
