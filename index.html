@@ -279,9 +279,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 
   <div class="tab-content" id="tab-mazel">
     <div class="sec-title">הודעות מזל טוב</div>
-    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת בנימין וברכה יעקבסון לרגל הכנסת נכדם אריאל משה לבריתו של אברהם אבינו, ולרגל הולדת נכדה דליה מלכה! תאומים לבנם אברהם ויפה גרונא. יזכו לגדלם לתורה לחופה ולמעשים טובים 🎉</div></div>
-    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת הריס לרגל שבת אופרוף לבנם החתן יהושע צבי מיכל! יזכו לבנות בית נאמן בישראל 🎉</div></div>
-    <div class="ann-item"><div class="ann-txt">מזל טוב למשפחת טוקצינסקי לרגל נישואי בתם הכלה תהילה שתחי'! יזכו לבנות בית נאמן בישראל 🎉</div></div>
+    <div class="ann-empty">אין הודעות כרגע</div>
   </div>
 
   <div class="tab-content" id="tab-donate">
@@ -469,7 +467,7 @@ function getTodayPrayers() {
       {name:"מעריב",time:"20:00",sub:"ליל חג"}
     ];
   }
-  var isRoshChodesh = (todayKey()===20260517);
+  var isRoshChodesh = (todayKey()===20260615||todayKey()===20260616);
   if (isRoshChodesh) {
     return [
       {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
@@ -509,7 +507,7 @@ function renderToday() {
   var p=SCH[AI], hd=getHebDate();
   var label="יום "+dayNames[new Date().getDay()];
   if(hd){label+=" | "+hd+" תשפ\"ו";}
-  var isRC=(todayKey()===20260517);
+  var isRC=(todayKey()===20260615||todayKey()===20260616);
   label+= isRC ? " — ראש חודש סיון" : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
@@ -517,7 +515,7 @@ function renderToday() {
   var now=new Date();
   var tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
   var tomorrowKey=tomorrow.getFullYear()*10000+(tomorrow.getMonth()+1)*100+tomorrow.getDate();
-  var isRCTomorrow=(tomorrowKey===20260517);
+  var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616);
   var shacharitTomorrow = '<div class="pgrid">'
     + '<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">'+(isRCTomorrow?'6:05':'6:15')+'</div><div class="psub">ברכו '+(isRCTomorrow?'6:15':'6:25')+'</div></div>'
     + '<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
@@ -543,7 +541,7 @@ function renderToday() {
 
 function updateNext() {
   if(isMotzei()){
-    var rcTomorrow=(tomorrowKey()===20260517);
+    var rcTomorrow=(tomorrowKey()===20260615||tomorrowKey()===20260616);
     document.getElementById('nName').textContent=rcTomorrow?"שחרית א' — ראש חודש סיון":"שחרית א' מחר";
     document.getElementById('nTime').textContent=rcTomorrow?"6:05":"6:15";
     document.getElementById('nCD').textContent=rcTomorrow?"ברכו 6:15":"ברכו 6:25";
