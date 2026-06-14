@@ -557,9 +557,10 @@ function updateNext() {
     var diff=pt(next.time)-n, h=Math.floor(diff/60), m=diff%60;
     document.getElementById('nCD').textContent=h>0?"בעוד "+h+" שע' ו-"+m+" דק'":"בעוד "+m+" דקות";
   } else {
-    document.getElementById('nName').textContent="שחרית מחר";
-    document.getElementById('nTime').textContent="6:15";
-    document.getElementById('nCD').textContent="תפילות היום הסתיימו";
+    var rcNext=(tomorrowKey()===20260615||tomorrowKey()===20260616);
+    document.getElementById('nName').textContent=rcNext?"שחרית א' — ראש חודש":"שחרית מחר";
+    document.getElementById('nTime').textContent=rcNext?"6:05":"6:15";
+    document.getElementById('nCD').textContent=rcNext?"ברכו 6:15":"תפילות היום הסתיימו";
   }
 }
 
