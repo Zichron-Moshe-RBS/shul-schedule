@@ -149,6 +149,10 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div id="ykkBanner" style="display:none;background:#f5d98a;color:#3d2200;padding:.75rem 1.2rem;text-align:center;font-family:'Frank Ruhl Libre',serif;font-size:1rem;font-weight:700;border-bottom:2px solid #c9a96e;">
   ⏰ תזכורת: תפילת יום כיפור קטן היום בשעה 13:15
 </div>
+<div id="tsomBanner" style="display:none;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#e0d7c6;padding:1rem 1.5rem;text-align:center;direction:rtl;border-bottom:2px solid #8a9bb5;">
+  <div style="font-size:1.2rem;font-weight:700;font-family:'Frank Ruhl Libre',serif;">✡ צום י״ז בתמוז תשפ״ו ✡</div>
+  <div style="font-size:.85rem;opacity:.8;margin-top:4px;">יהי רצון שיהפך לששון ולשמחה</div>
+</div>
 <div id="shavuotBanner" style="display:none;background:linear-gradient(135deg,#1a0f00,#3d2200);color:#f5d98a;padding:1.1rem 1.5rem;text-align:center;direction:rtl;border-bottom:2px solid #c9a96e;">
   <div style="font-size:.75rem;opacity:.7;letter-spacing:2px;margin-bottom:4px;">✦ ✦ ✦</div>
   <div style="font-size:1.3rem;font-weight:700;font-family:'Frank Ruhl Libre',serif;">📜 ערב חג שבועות תשפ"ו</div>
@@ -462,6 +466,18 @@ function getTodayPrayers() {
     fri.push({name:"מעריב",time:p.mv,sub:""});
     return fri;
   }
+  var isTsomTammuz = (todayKey()===20260702);
+  if (isTsomTammuz) {
+    return [
+      {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
+      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
+      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"מנחה גדולה",time:"13:20",sub:""},
+      {name:"מנחה קטנה",time:"19:20",sub:""},
+      {name:"מעריב א'",time:"20:10",sub:""},
+      {name:"מעריב ב'",time:"22:00",sub:""}
+    ];
+  }
   var isErevShavuot = (todayKey()===20260521);
   if (isErevShavuot) {
     return [
@@ -515,7 +531,8 @@ function renderToday() {
   var label="יום "+dayNames[new Date().getDay()];
   if(hd){label+=" | "+hd+" תשפ\"ו";}
   var isRC=(todayKey()===20260615||todayKey()===20260616);
-  label+= isRC ? " — ראש חודש סיון" : " — פרשת "+p.p;
+  var isTsomTmz=(todayKey()===20260702);
+  label+= isTsomTmz ? " — צום י״ז בתמוז" : isRC ? " — ראש חודש סיון" : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
@@ -668,6 +685,11 @@ function updateClock() {
     if(omerEl){omerEl.textContent="";}
     if(omerSub){omerSub.textContent="";}
     if(omerSef){omerSef.textContent="";}
+  }
+  // Tsom 17 Tammuz banner
+  var tsomBanner=document.getElementById('tsomBanner');
+  if(tsomBanner){
+    tsomBanner.style.display=(todayKey()===20260702)?'block':'none';
   }
   // Yom kippur katan banner - erev rosh chodesh sivan = May 19 2026, until 14:00
   var shavuotBanner=document.getElementById('shavuotBanner');
