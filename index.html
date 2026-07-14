@@ -499,6 +499,30 @@ function getTodayPrayers() {
       {name:"מעריב ב'",time:"22:00",sub:""}
     ];
   }
+  var isErevRC_Av = (todayKey()===20260714);
+  if (isErevRC_Av) {
+    return [
+      {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
+      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
+      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"יום כיפור קטן",time:"13:15",sub:"אשרי 13:20"},
+      {name:"מנחה קטנה",time:p.mk,sub:""},
+      {name:"מעריב א'",time:p.m1,sub:""},
+      {name:"מעריב ב'",time:"22:00",sub:""}
+    ];
+  }
+  var isRoshChodeshAv = (todayKey()===20260715);
+  if (isRoshChodeshAv) {
+    return [
+      {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
+      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
+      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"מנחה גדולה",time:"13:20",sub:""},
+      {name:"מנחה קטנה",time:p.mk,sub:""},
+      {name:"מעריב א'",time:p.m1,sub:""},
+      {name:"מעריב ב'",time:"22:00",sub:""}
+    ];
+  }
   var isErevRC = (todayKey()===20260514);
   if (isErevRC) {
     return [
@@ -527,16 +551,17 @@ function renderToday() {
   var p=SCH[AI], hd=getHebDate();
   var label="יום "+dayNames[new Date().getDay()];
   if(hd){label+=" | "+hd+" תשפ\"ו";}
-  var isRC=(todayKey()===20260615||todayKey()===20260616);
+  var isRC=(todayKey()===20260615||todayKey()===20260616||todayKey()===20260715);
   var isTsomTmz=(todayKey()===20260702);
-  label+= isTsomTmz ? " — צום י״ז בתמוז" : isRC ? " — ראש חודש סיון" : " — פרשת "+p.p;
+  var isErevRCAv=(todayKey()===20260714);
+  label+= isTsomTmz ? " — צום י״ז בתמוז" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : " — ראש חודש סיון") : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
   var now=new Date();
   var tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
   var tomorrowKey=tomorrow.getFullYear()*10000+(tomorrow.getMonth()+1)*100+tomorrow.getDate();
-  var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616);
+  var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616||tomorrowKey===20260715);
   var shacharitTomorrow = '<div class="pgrid">'
     + '<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">'+(isRCTomorrow?'6:05':'6:15')+'</div><div class="psub">ברכו '+(isRCTomorrow?'6:15':'6:25')+'</div></div>'
     + '<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
