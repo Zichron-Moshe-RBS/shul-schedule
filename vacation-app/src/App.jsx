@@ -1,33 +1,32 @@
-import { useState } from 'react';
 import Header from './components/Header';
 import EmployeeView from './components/EmployeeView';
 import ManagerView from './components/ManagerView';
-import { INITIAL_REQUESTS, STATUS } from './data/mockData';
+import { INITIAL_VACATIONS } from './data/mockData';
+import { useLocalStorageState } from './utils/useLocalStorageState';
+import { useState } from 'react';
 
-let nextId = INITIAL_REQUESTS.length + 1;
+let nextId = INITIAL_VACATIONS.length + 1;
 
 function App() {
   const [view, setView] = useState('employee');
-  const [requests, setRequests] = useState(INITIAL_REQUESTS);
+  const [vacations, setVacations] = useLocalStorageState(
+    'vacations',
+    INITIAL_VACATIONS
+  );
 
-  function addRequest(form) {
-    const newRequest = {
-      id: `r${nextId++}`,
+  function addVacation(form) {
+    const newVacation = {
+      id: `v${nextId++}`,
       employeeId: form.employeeId,
       startDate: form.startDate,
       endDate: form.endDate,
-      type: form.type,
       note: form.note,
-      status: STATUS.PENDING,
-      createdAt: new Date().toISOString().slice(0, 10),
     };
-    setRequests((prev) => [newRequest, ...prev]);
+    setVacations((prev) => [newVacation, ...prev]);
   }
 
-  function updateStatus(id, status) {
-    setRequests((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status } : r))
-    );
+  function deleteVacation(id) {
+    setVacations((prev) => prev.filter((v) => v.id !== id));
   }
 
   return (
@@ -35,13 +34,13 @@ function App() {
       <Header view={view} onChangeView={setView} />
 
       {view === 'employee' ? (
-        <EmployeeView requests={requests} onAddRequest={addRequest} />
-      ) : (
-        <ManagerView
-          requests={requests}
-          onApprove={(id) => updateStatus(id, STATUS.APPROVED)}
-          onReject={(id) => updateStatus(id, STATUS.REJECTED)}
+        <EmployeeView
+          vacations={vacations}
+          onAddVacation={addVacation}
+          onDeleteVacation={deleteVacation}
         />
+      ) : (
+        <ManagerView vacations={vacations} />
       )}
     </div>
   );
