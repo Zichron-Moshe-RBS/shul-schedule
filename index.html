@@ -586,7 +586,7 @@ function renderToday() {
   var isErevRCAv=(todayKey()===20260714);
   var isErevTBA=(todayKey()===20260722);
   var isTBA=(todayKey()===20260723);
-  label+= isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : todayKey()===20260813 ? " — ראש חודש אלול א'" : todayKey()===20260814 ? " — ראש חודש אלול ב'" : " — ראש חודש סיון") : " — פרשת "+p.p;
+  label+= isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : (todayKey()===20260813||todayKey()===20260814) ? " — ראש חודש אלול" : " — ראש חודש סיון") : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
@@ -650,7 +650,7 @@ function updateNext() {
   } else {
     var rcNext=(tomorrowKey()===20260615||tomorrowKey()===20260616||tomorrowKey()===20260813||tomorrowKey()===20260814);
     var tbavNext=(tomorrowKey()===20260723);
-    var rcNextName=tomorrowKey()===20260813?"שחרית א' — ר\"ח אלול א'":tomorrowKey()===20260814?"שחרית א' — ר\"ח אלול ב'":rcNext?"שחרית א' — ראש חודש":"שחרית מחר";
+    var rcNextName=(tomorrowKey()===20260813||tomorrowKey()===20260814)?"שחרית א' — ר\"ח אלול":rcNext?"שחרית א' — ראש חודש":"שחרית מחר";
     document.getElementById('nName').textContent=tbavNext?"שחרית — קינות (מחר)":rcNextName;
     document.getElementById('nTime').textContent=tbavNext?"9:00":rcNext?"6:05":"6:15";
     document.getElementById('nCD').textContent=tbavNext?"ברכו 9:10":rcNext?"ברכו 6:15":"תפילות היום הסתיימו";
@@ -764,11 +764,7 @@ function updateClock() {
     var showRCElul=isErevRCElul||isRCElulDay;
     rcElulBanner.style.display=showRCElul?'block':'none';
     var txt=document.getElementById('roshChodeshElulBannerText');
-    if(txt){
-      if(isErevRCElul){txt.textContent='🌙 ראש חודש אלול מהערב';}
-      else if(tkRCE===20260813){txt.textContent='🌙 ראש חודש אלול — יום ראשון (ל׳ באב)';}
-      else if(tkRCE===20260814){txt.textContent='🌙 ראש חודש אלול — יום שני (א׳ באלול)';}
-    }
+    if(txt){txt.textContent=isErevRCElul?'🌙 ראש חודש אלול מהערב':'🌙 ראש חודש אלול';}
   }
   // Tsom 17 Tammuz banner
   var tsomBanner=document.getElementById('tsomBanner');
