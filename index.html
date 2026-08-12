@@ -157,6 +157,10 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   <div style="font-size:1.3rem;font-weight:700;font-family:'Frank Ruhl Libre',serif;">תשעה באב תשפ״ו</div>
   <div style="font-size:.85rem;opacity:.8;margin-top:4px;">יהי רצון שיהפך לששון ולשמחה ולמועדים טובים</div>
 </div>
+<div id="roshChodeshElulBanner" style="display:none;background:linear-gradient(135deg,#0a2a1a,#1a4a2e);color:#a8dbb8;padding:.9rem 1.5rem;text-align:center;direction:rtl;border-bottom:2px solid #3a7a50;">
+  <div id="roshChodeshElulBannerText" style="font-size:1.15rem;font-weight:700;font-family:'Frank Ruhl Libre',serif;">🌙 ראש חודש אלול מהערב</div>
+  <div style="font-size:.82rem;opacity:.8;margin-top:3px;">חודש אלול תשפ״ו — חודש הרחמים והסליחות</div>
+</div>
 <div id="shavuotBanner" style="display:none;background:linear-gradient(135deg,#1a0f00,#3d2200);color:#f5d98a;padding:1.1rem 1.5rem;text-align:center;direction:rtl;border-bottom:2px solid #c9a96e;">
   <div style="font-size:.75rem;opacity:.7;letter-spacing:2px;margin-bottom:4px;">✦ ✦ ✦</div>
   <div style="font-size:1.3rem;font-weight:700;font-family:'Frank Ruhl Libre',serif;">📜 ערב חג שבועות תשפ"ו</div>
@@ -513,7 +517,7 @@ function getTodayPrayers() {
       {name:"מעריב",time:"20:00",sub:"ליל חג"}
     ];
   }
-  var isRoshChodesh = (todayKey()===20260615||todayKey()===20260616);
+  var isRoshChodesh = (todayKey()===20260615||todayKey()===20260616||todayKey()===20260813||todayKey()===20260814);
   if (isRoshChodesh) {
     return [
       {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
@@ -577,19 +581,19 @@ function renderToday() {
   var p=SCH[AI], hd=getHebDate();
   var label="יום "+dayNames[new Date().getDay()];
   if(hd){label+=" | "+hd+" תשפ\"ו";}
-  var isRC=(todayKey()===20260615||todayKey()===20260616||todayKey()===20260715);
+  var isRC=(todayKey()===20260615||todayKey()===20260616||todayKey()===20260715||todayKey()===20260813||todayKey()===20260814);
   var isTsomTmz=(todayKey()===20260702);
   var isErevRCAv=(todayKey()===20260714);
   var isErevTBA=(todayKey()===20260722);
   var isTBA=(todayKey()===20260723);
-  label+= isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : " — ראש חודש סיון") : " — פרשת "+p.p;
+  label+= isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : todayKey()===20260813 ? " — ראש חודש אלול א'" : todayKey()===20260814 ? " — ראש חודש אלול ב'" : " — ראש חודש סיון") : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
   var now=new Date();
   var tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
   var tomorrowKey=tomorrow.getFullYear()*10000+(tomorrow.getMonth()+1)*100+tomorrow.getDate();
-  var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616||tomorrowKey===20260715);
+  var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616||tomorrowKey===20260715||tomorrowKey===20260813||tomorrowKey===20260814);
   var isTishaBAVTomorrow=(tomorrowKey===20260723);
   var shacharitTomorrow;
   if(isTishaBAVTomorrow){
@@ -644,9 +648,10 @@ function updateNext() {
     var diff=pt(next.time)-n, h=Math.floor(diff/60), m=diff%60;
     document.getElementById('nCD').textContent=h>0?"בעוד "+h+" שע' ו-"+m+" דק'":"בעוד "+m+" דקות";
   } else {
-    var rcNext=(tomorrowKey()===20260615||tomorrowKey()===20260616);
+    var rcNext=(tomorrowKey()===20260615||tomorrowKey()===20260616||tomorrowKey()===20260813||tomorrowKey()===20260814);
     var tbavNext=(tomorrowKey()===20260723);
-    document.getElementById('nName').textContent=tbavNext?"שחרית — קינות (מחר)":rcNext?"שחרית א' — ראש חודש":"שחרית מחר";
+    var rcNextName=tomorrowKey()===20260813?"שחרית א' — ר\"ח אלול א'":tomorrowKey()===20260814?"שחרית א' — ר\"ח אלול ב'":rcNext?"שחרית א' — ראש חודש":"שחרית מחר";
+    document.getElementById('nName').textContent=tbavNext?"שחרית — קינות (מחר)":rcNextName;
     document.getElementById('nTime').textContent=tbavNext?"9:00":rcNext?"6:05":"6:15";
     document.getElementById('nCD').textContent=tbavNext?"ברכו 9:10":rcNext?"ברכו 6:15":"תפילות היום הסתיימו";
   }
@@ -749,6 +754,21 @@ function updateClock() {
     if(omerEl){omerEl.textContent="";}
     if(omerSub){omerSub.textContent="";}
     if(omerSef){omerSef.textContent="";}
+  }
+  // Rosh Chodesh Elul banner: show from evening of Aug 12 through Aug 14
+  var rcElulBanner=document.getElementById('roshChodeshElulBanner');
+  if(rcElulBanner){
+    var tkRCE=todayKey(), nmRCE=nowMins();
+    var isErevRCElul=(tkRCE===20260812 && nmRCE>=pt("20:09"));
+    var isRCElulDay=(tkRCE===20260813||tkRCE===20260814);
+    var showRCElul=isErevRCElul||isRCElulDay;
+    rcElulBanner.style.display=showRCElul?'block':'none';
+    var txt=document.getElementById('roshChodeshElulBannerText');
+    if(txt){
+      if(isErevRCElul){txt.textContent='🌙 ראש חודש אלול מהערב';}
+      else if(tkRCE===20260813){txt.textContent='🌙 ראש חודש אלול — יום ראשון (ל׳ באב)';}
+      else if(tkRCE===20260814){txt.textContent='🌙 ראש חודש אלול — יום שני (א׳ באלול)';}
+    }
   }
   // Tsom 17 Tammuz banner
   var tsomBanner=document.getElementById('tsomBanner');
