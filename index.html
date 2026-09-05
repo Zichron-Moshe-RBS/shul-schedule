@@ -743,7 +743,8 @@ function renderToday() {
       +'</div>';
   }
   if(isMotzei()){
-    content.innerHTML='<div class="tomorrow-box"><div class="tb-label">מוצאי שבת — תפילות שחרית מחר</div><div class="tb-name">פרשת '+p.p+'</div></div>'+shacharitTomorrow;
+    var isHolTmr=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
+    content.innerHTML='<div class="tomorrow-box"><div class="tb-label">מוצאי שבת — תפילות שחרית מחר</div>'+(isHolTmr?'<div class="tb-name">'+p.p+'</div>':'<div class="tb-name">פרשת '+p.p+'</div>')+'</div>'+shacharitTomorrow;
     return;
   }
   var prayers=getTodayPrayers(), n=nowMins(), nf=false, html='<div class="pgrid">', i, pr, pm, past, isNext;
@@ -813,12 +814,16 @@ function renderShabbat() {
   fri.sort(function(a,b){return pt(a.t)-pt(b.t);});
   var isHoliday=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
   var i, html='<div class="sh-hdr"><div>'+(isHoliday?'<div class="sh-pname" style="font-size:1.2rem;">'+p.p+'</div>':'<div class="sh-plabel">פרשת השבוע</div><div class="sh-pname">'+p.p+'</div>')+'</div><div class="sh-date">'+p.d+'.'+p.mo+'.'+p.y+'</div></div>';
-  html+='<div class="sh-sec">ערב שבת — יום שישי</div>';
-  for(i=0;i<fri.length;i++){html+=shRow(fri[i].n,fri[i].t);}
-  html+='<div class="sh-sec">שבת בבוקר ואחר הצהריים</div>';
-  html+=shRow("שחרית","8:30")+shRow("מנחה גדולה","13:30")+shRow("אבות ובנים","50 דק' לפני מנחה קטנה")+shRow("תהילים לילדים","15 דק' לפני מנחה קטנה")+shRow("מנחה קטנה",p.mk_s);
-  html+='<div class="sh-sec">מוצאי שבת</div>';
-  html+=shRow("צאת השבת / מעריב א'",p.tz)+shRow("מעריב ב'",p.m1s);
+  if(isHoliday){
+    html+='<div style="text-align:center;color:#8b7355;font-size:.9rem;padding:2rem 1rem;">הזמנים יתעדכנו בקרוב</div>';
+  } else {
+    html+='<div class="sh-sec">ערב שבת — יום שישי</div>';
+    for(i=0;i<fri.length;i++){html+=shRow(fri[i].n,fri[i].t);}
+    html+='<div class="sh-sec">שבת בבוקר ואחר הצהריים</div>';
+    html+=shRow("שחרית","8:30")+shRow("מנחה גדולה","13:30")+shRow("אבות ובנים","50 דק' לפני מנחה קטנה")+shRow("תהילים לילדים","15 דק' לפני מנחה קטנה")+shRow("מנחה קטנה",p.mk_s);
+    html+='<div class="sh-sec">מוצאי שבת</div>';
+    html+=shRow("צאת השבת / מעריב א'",p.tz)+shRow("מעריב ב'",p.m1s);
+  }
   document.getElementById('shabbatBlock').innerHTML=html;
 }
 
