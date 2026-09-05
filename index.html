@@ -1247,7 +1247,7 @@ try{renderAnns();}catch(e){}
 (function(){
   var tk=todayKey();
   var hide=[];
-  if(tk>20260905)hide.push('sel-col-1');
+  if(tk>20260906||(tk===20260906&&nowMins()>=120))hide.push('sel-col-1');
   if(tk>20260910)hide.push('sel-col-2');
   if(tk>20260911)hide.push('sel-col-3');
   if(tk>20260920)hide.push('sel-col-4');
