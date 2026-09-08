@@ -182,7 +182,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
     <button class="tab-btn" onclick="sw('selichot')">סליחות</button>
-    <button class="tab-btn" onclick="sw('shabbat')">שבת קרובה</button>
+    <button class="tab-btn" onclick="sw('shabbat')" id="shabbatTabBtn">שבת קרובה</button>
     <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
@@ -832,7 +832,7 @@ function renderShabbat() {
   if(p.mv){fri.push({n:"מעריב",t:p.mv});}
   fri.sort(function(a,b){return pt(a.t)-pt(b.t);});
   var isHoliday=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
-  var holidayDisplay=p.p==="ראש השנה"?'ראש השנה תשפ"ו':p.p;
+  var holidayDisplay=p.p==="ראש השנה"?'ראש השנה תשפ"ז':p.p;
   var i, html='<div class="sh-hdr"><div>'+(isHoliday?'<div class="sh-pname" style="font-size:1.2rem;">'+holidayDisplay+'</div>':'<div class="sh-plabel">פרשת השבוע</div><div class="sh-pname">'+p.p+'</div>')+'</div><div class="sh-date">'+p.d+'.'+p.mo+'.'+p.y+'</div></div>';
   if(isHoliday && p.p==="ראש השנה"){
     html+='<div class="sh-sec">ערב שבת ראש השנה — יום שישי</div>';
@@ -1292,6 +1292,7 @@ try{updateNext();}catch(e){}
 try{renderZmanim();}catch(e){}
 try{renderToday();}catch(e){}
 try{renderShabbat();}catch(e){}
+(function(){var btn=document.getElementById('shabbatTabBtn');if(btn&&SCH[AI]&&(SCH[AI].p==="ראש השנה"||SCH[AI].p==="יום כיפור"||SCH[AI].p==="סוכות"||SCH[AI].p==="שמיני עצרת")){btn.textContent=SCH[AI].p==="ראש השנה"?'ראש השנה':SCH[AI].p;}})();
 try{renderFixed();}catch(e){}
 try{renderCal();}catch(e){}
 try{renderAnns();}catch(e){}
