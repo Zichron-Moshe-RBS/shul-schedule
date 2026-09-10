@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- build:20260910-1200 -->
+<!-- build:20260910-1215 -->
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -748,8 +748,22 @@ function renderToday() {
   var tomorrowKey=tomorrow.getFullYear()*10000+(tomorrow.getMonth()+1)*100+tomorrow.getDate();
   var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616||tomorrowKey===20260715||tomorrowKey===20260813||tomorrowKey===20260814);
   var isTishaBAVTomorrow=(tomorrowKey===20260723);
+  var isErevRHTomorrow=(tomorrowKey===20260911);
   var shacharitTomorrow;
-  if(isTishaBAVTomorrow){
+  if(isErevRHTomorrow){
+    shacharitTomorrow='<div class="pgrid">'
+      +'<div class="pc"><div class="pname">סליחות</div><div class="ptime">5:55</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">6:40</div><div class="psub">ברכו 6:50</div></div>'
+      +'<div class="pc"><div class="pname">סליחות</div><div class="ptime">6:45</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:25</div><div class="psub">ברכו 7:35</div></div>'
+      +'<div class="pc"><div class="pname">סליחות</div><div class="ptime">8:10</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">9:00</div><div class="psub">ברכו 9:10</div></div>'
+      +'<div class="pc"><div class="pname">מנחה גדולה</div><div class="ptime">13:30</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">מנחה קטנה</div><div class="ptime">18:38</div><div class="psub">מכירת עליות</div></div>'
+      +'<div class="pc"><div class="pname">הדלקת נרות</div><div class="ptime">18:13</div><div class="psub">כניסת החג</div></div>'
+      +'<div class="pc"><div class="pname">מעריב</div><div class="ptime">19:13</div><div class="psub"></div></div>'
+      +'</div>';
+  } else if(isTishaBAVTomorrow){
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">שחרית — קינות</div><div class="ptime">9:00</div><div class="psub">ברכו 9:10</div></div>'
       +'<div class="pc"><div class="pname">מנחה גדולה</div><div class="ptime">13:20</div><div class="psub"></div></div>'
@@ -777,7 +791,7 @@ function renderToday() {
   }
   // If all prayers done - show tomorrow shacharit
   if(!nf){
-    var tmrwTitle=isTishaBAVTomorrow?'תפילות מחר — תשעה באב':'שחרית מחר';
+    var tmrwTitle=isTishaBAVTomorrow?'תפילות מחר — תשעה באב':isErevRHTomorrow?'תפילות מחר — ערב ראש השנה':'שחרית מחר';
     content.innerHTML=html+'</div><div style="margin-top:.8rem;"><div class="sec-title" style="margin-top:0;">'+tmrwTitle+'</div>'+shacharitTomorrow+'</div>';
   } else {
     content.innerHTML=html+'</div>';
