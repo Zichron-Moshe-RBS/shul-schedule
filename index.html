@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- build:20260910-1215 -->
+<!-- build:20260911-0630 -->
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -532,6 +532,22 @@ function getTodayPrayers() {
     for (i=0;i<arr.length;i++) { if(arr[i].time){result.push(arr[i]);} }
     return result;
   }
+  // ערב ראש השנה — לפני בדיקת יום שישי רגיל
+  var isErevRH=(todayKey()===20260911);
+  if(isErevRH){
+    return [
+      {name:"סליחות",time:"5:55",sub:""},
+      {name:"שחרית א'",time:"6:40",sub:"ברכו 6:50"},
+      {name:"סליחות",time:"6:45",sub:""},
+      {name:"שחרית ב'",time:"7:25",sub:"ברכו 7:35"},
+      {name:"סליחות",time:"8:10",sub:""},
+      {name:"שחרית ג'",time:"9:00",sub:"ברכו 9:10"},
+      {name:"מנחה גדולה",time:"13:30",sub:""},
+      {name:"מנחה קטנה — מכירת עליות",time:"18:38",sub:""},
+      {name:"הדלקת נרות",time:"18:13",sub:"כניסת החג"},
+      {name:"מעריב",time:"19:13",sub:""}
+    ];
+  }
   if (isFri) {
     var fri = [
       {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
@@ -642,22 +658,6 @@ function getTodayPrayers() {
       {name:"מנחה קטנה",time:p.mk,sub:""},
       {name:"מעריב א'",time:p.m1,sub:""},
       {name:"מעריב ב'",time:"22:00",sub:""}
-    ];
-  }
-  // ערב ראש השנה (כ"ט אלול, 11 ספטמבר)
-  var isErevRH=(todayKey()===20260911);
-  if(isErevRH){
-    return [
-      {name:"סליחות",time:"5:55",sub:""},
-      {name:"שחרית א'",time:"6:40",sub:"ברכו 6:50"},
-      {name:"סליחות",time:"6:45",sub:""},
-      {name:"שחרית ב'",time:"7:25",sub:"ברכו 7:35"},
-      {name:"סליחות",time:"8:10",sub:""},
-      {name:"שחרית ג'",time:"9:00",sub:"ברכו 9:10"},
-      {name:"מנחה גדולה",time:"13:30",sub:""},
-      {name:"מנחה קטנה — מכירת עליות",time:"18:38",sub:""},
-      {name:"הדלקת נרות",time:"18:13",sub:"כניסת החג"},
-      {name:"מעריב",time:"19:13",sub:""}
     ];
   }
   // צום גדליה (14 ספטמבר)
