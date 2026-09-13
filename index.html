@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- build:20260913-0800 -->
+<!-- build:20260913-2015 -->
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -963,7 +963,7 @@ function updateClock() {
   var days=["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
   var months=["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"];
   var hd=getHebDate();
-  document.getElementById('cHebDate').textContent=hd ? hd+" תשפ\"ו" : "";
+  document.getElementById('cHebDate').textContent=hd||"";
   document.getElementById('cDate').textContent="יום "+days[now.getDay()]+", "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
   var omer=getOmerDay();
   var omerEl=document.getElementById('cOmer');
