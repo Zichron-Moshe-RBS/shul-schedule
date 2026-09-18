@@ -182,7 +182,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div class="main">
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
-    <button class="tab-btn" onclick="sw('selichot')">סליחות</button>
+    <button class="tab-btn" onclick="sw('selichot')">יום הכיפורים</button>
     <button class="tab-btn" onclick="sw('shabbat')" id="shabbatTabBtn">שבת קרובה</button>
     <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
@@ -199,78 +199,33 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   </div>
 
   <div class="tab-content" id="tab-selichot">
-    <div class="sec-title">זמני סליחות — בית הכנסת זכרון משה</div>
-    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
-    <table style="width:100%;border-collapse:collapse;font-size:.82rem;direction:rtl;">
-      <thead>
-        <tr style="background:#3d2200;color:#f5d98a;">
-          <th style="padding:.55rem .6rem;font-family:'Frank Ruhl Libre',serif;text-align:right;white-space:nowrap;"></th>
-          <th class="sel-col-1" style="padding:.55rem .4rem;text-align:center;white-space:nowrap;font-size:.78rem;">מוצ"ש<br>נצבים-וילך</th>
-          <th class="sel-col-2" style="padding:.55rem .4rem;text-align:center;white-space:nowrap;font-size:.78rem;">א'–ה'<br>כ"ד–כ"ח אלול</th>
-          <th class="sel-col-3" style="padding:.55rem .4rem;text-align:center;white-space:nowrap;font-size:.78rem;">ערב<br>ראש השנה</th>
-          <th class="sel-col-tzg" style="padding:.55rem .4rem;text-align:center;white-space:nowrap;font-size:.78rem;">צום<br>גדליה</th>
-          <th class="sel-col-4" style="padding:.55rem .4rem;text-align:center;white-space:nowrap;font-size:.78rem;">עשרת<br>ימי תשובה</th>
-          <th class="sel-col-5" style="padding:.55rem .4rem;text-align:center;white-space:nowrap;font-size:.78rem;">ערב<br>יום כיפור</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:#fffbf0;">
-          <td style="text-align:right;padding:.5rem .7rem;font-weight:700;color:#3d2200;font-family:'Frank Ruhl Libre',serif;white-space:nowrap;">סליחות</td>
-          <td class="sel-col-1" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">00:38</td>
-          <td class="sel-col-2" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">5:55</td>
-          <td class="sel-col-3" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">5:55</td>
-          <td class="sel-col-tzg" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">5:45</td>
-          <td class="sel-col-4" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">5:50</td>
-          <td class="sel-col-5" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">6:05</td>
-        </tr>
-        <tr style="border-bottom:.5px solid #f0e8d8;">
-          <td style="text-align:right;padding:.5rem .7rem;color:#2a1f0e;white-space:nowrap;">שחרית א'</td>
-          <td class="sel-col-1" style="text-align:center;color:#8b7355;font-size:.8rem;">—</td>
-          <td class="sel-col-2" style="text-align:center;font-family:monospace;color:#5c3500;">6:15</td>
-          <td class="sel-col-3" style="text-align:center;font-family:monospace;color:#5c3500;">6:40</td>
-          <td class="sel-col-tzg" style="text-align:center;font-family:monospace;color:#5c3500;">6:15</td>
-          <td class="sel-col-4" style="text-align:center;font-family:monospace;color:#5c3500;">6:15</td>
-          <td class="sel-col-5" style="text-align:center;font-family:monospace;color:#5c3500;">6:15</td>
-        </tr>
-        <tr style="background:#fffbf0;">
-          <td style="text-align:right;padding:.5rem .7rem;font-weight:700;color:#3d2200;font-family:'Frank Ruhl Libre',serif;white-space:nowrap;">סליחות</td>
-          <td class="sel-col-1" style="text-align:center;color:#8b7355;font-size:.8rem;">—</td>
-          <td class="sel-col-2" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">6:45</td>
-          <td class="sel-col-3" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">6:45</td>
-          <td class="sel-col-tzg" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">6:35</td>
-          <td class="sel-col-4" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">6:35</td>
-          <td class="sel-col-5" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">6:50</td>
-        </tr>
-        <tr style="border-bottom:.5px solid #f0e8d8;">
-          <td style="text-align:right;padding:.5rem .7rem;color:#2a1f0e;white-space:nowrap;">שחרית ב'</td>
-          <td class="sel-col-1" style="text-align:center;color:#8b7355;font-size:.8rem;">—</td>
-          <td class="sel-col-2" style="text-align:center;font-family:monospace;color:#5c3500;">7:00</td>
-          <td class="sel-col-3" style="text-align:center;font-family:monospace;color:#5c3500;">7:25</td>
-          <td class="sel-col-tzg" style="text-align:center;font-family:monospace;color:#5c3500;">7:00</td>
-          <td class="sel-col-4" style="text-align:center;font-family:monospace;color:#5c3500;">7:00</td>
-          <td class="sel-col-5" style="text-align:center;font-family:monospace;color:#5c3500;">7:00</td>
-        </tr>
-        <tr style="background:#fffbf0;">
-          <td style="text-align:right;padding:.5rem .7rem;font-weight:700;color:#3d2200;font-family:'Frank Ruhl Libre',serif;white-space:nowrap;">סליחות</td>
-          <td class="sel-col-1" style="text-align:center;color:#8b7355;font-size:.8rem;">—</td>
-          <td class="sel-col-2" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">8:10</td>
-          <td class="sel-col-3" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">8:10</td>
-          <td class="sel-col-tzg" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">8:05</td>
-          <td class="sel-col-4" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">8:05</td>
-          <td class="sel-col-5" style="text-align:center;font-weight:700;color:#5c3500;font-family:monospace;">8:20</td>
-        </tr>
-        <tr>
-          <td style="text-align:right;padding:.5rem .7rem;color:#2a1f0e;white-space:nowrap;">שחרית ג'</td>
-          <td class="sel-col-1" style="text-align:center;color:#8b7355;font-size:.8rem;">—</td>
-          <td class="sel-col-2" style="text-align:center;font-family:monospace;color:#5c3500;">8:30</td>
-          <td class="sel-col-3" style="text-align:center;font-family:monospace;color:#5c3500;">9:00</td>
-          <td class="sel-col-tzg" style="text-align:center;font-family:monospace;color:#5c3500;">8:30</td>
-          <td class="sel-col-4" style="text-align:center;font-family:monospace;color:#5c3500;">8:30</td>
-          <td class="sel-col-5" style="text-align:center;font-family:monospace;color:#5c3500;">8:30</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="sec-title">יום ראשון — ערב יום הכיפורים</div>
+    <div class="fb">
+      <div class="fr"><span class="fl">סליחות ושחרית א'</span><span class="ft">6:05</span></div>
+      <div class="fr"><span class="fl">סליחות ושחרית ב'</span><span class="ft">6:50</span></div>
+      <div class="fr"><span class="fl">סליחות ושחרית ג'</span><span class="ft">8:20</span></div>
+      <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
     </div>
+    <div class="sec-title">יום הכיפורים</div>
+    <div class="fb">
+      <div class="fr"><span class="fl">תפילת זכה</span><span class="ft">18:00</span></div>
+      <div class="fr"><span class="fl">הדלקת נרות</span><span class="ft">18:02</span></div>
+      <div class="fr"><span class="fl">כל נדרי</span><span class="ft">18:20</span></div>
+      <div class="fr"><span class="fl">שקיעת החמה</span><span class="ft">18:42</span></div>
+      <div class="fr"><span class="fl">מעריב</span><span class="ft">19:02</span></div>
+    </div>
+    <div class="fb">
+      <div class="fr"><span class="fl">שחרית</span><span class="ft">7:30</span></div>
+      <div class="fr"><span class="fl">המלך</span><span class="ft">8:00</span></div>
+      <div class="fr"><span class="fl">יזכור (משוער)</span><span class="ft">10:30</span></div>
+    </div>
+    <div class="fb">
+      <div class="fr"><span class="fl">מנחה</span><span class="ft">16:15</span></div>
+      <div class="fr"><span class="fl">נעילה</span><span class="ft">17:25</span></div>
+      <div class="fr"><span class="fl">מעריב</span><span class="ft">19:04</span></div>
+      <div class="fr"><span class="fl">צאת הצום</span><span class="ft">19:14</span></div>
+    </div>
+    <p style="text-align:center;font-weight:700;color:#3d2200;font-family:'Frank Ruhl Libre',serif;margin-top:.8rem;font-size:1.05rem;">גמר חתימה טובה</p>
   </div>
 
   <div class="tab-content" id="tab-seder">
@@ -696,8 +651,8 @@ function getTodayPrayers() {
       {name:"מעריב ב'",time:"22:00",sub:""}
     ];
   }
-  // עשרת ימי תשובה (15-20 ספטמבר, ללא שבת 19/9)
-  var isAseretYamim=(todayKey()>=20260915 && todayKey()<=20260920 && todayKey()!==20260919);
+  // עשרת ימי תשובה (15-18 ספטמבר)
+  var isAseretYamim=(todayKey()>=20260915 && todayKey()<=20260918);
   if(isAseretYamim){
     return [
       {name:"סליחות",time:"5:50",sub:""},
@@ -712,16 +667,31 @@ function getTodayPrayers() {
       {name:"מעריב ב'",time:"22:00",sub:""}
     ];
   }
-  // ערב יום כיפור (21 ספטמבר)
-  var isErevYK=(todayKey()===20260921);
+  // ערב יום כיפור (20 ספטמבר)
+  var isErevYK=(todayKey()===20260920);
   if(isErevYK){
     return [
-      {name:"סליחות",time:"6:05",sub:""},
-      {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
-      {name:"סליחות",time:"6:50",sub:""},
-      {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
-      {name:"סליחות",time:"8:20",sub:""},
-      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"}
+      {name:"סליחות ושחרית א'",time:"6:05",sub:""},
+      {name:"סליחות ושחרית ב'",time:"6:50",sub:""},
+      {name:"סליחות ושחרית ג'",time:"8:20",sub:""},
+      {name:"מנחה גדולה",time:"13:30",sub:""},
+      {name:"תפילת זכה",time:"18:00",sub:""},
+      {name:"הדלקת נרות",time:"18:02",sub:""},
+      {name:"כל נדרי",time:"18:20",sub:""},
+      {name:"מעריב",time:"19:02",sub:""}
+    ];
+  }
+  // יום הכיפורים (21 ספטמבר)
+  var isYK=(todayKey()===20260921);
+  if(isYK){
+    return [
+      {name:"שחרית",time:"7:30",sub:""},
+      {name:"המלך",time:"8:00",sub:""},
+      {name:"יזכור",time:"10:30",sub:"משוער"},
+      {name:"מנחה",time:"16:15",sub:""},
+      {name:"נעילה",time:"17:25",sub:""},
+      {name:"מעריב",time:"19:04",sub:""},
+      {name:"צאת הצום",time:"19:14",sub:""}
     ];
   }
   var isErevRC = (todayKey()===20260514);
@@ -759,7 +729,9 @@ function renderToday() {
   var isTBA=(todayKey()===20260723);
   var isHolLbl=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
   var isTsomGed=(todayKey()===20260914);
-  label+= isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isTsomGed ? " — צום גדליה" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : (todayKey()===20260813||todayKey()===20260814) ? " — ראש חודש אלול" : " — ראש חודש סיון") : isHolLbl ? " — "+p.p : " — פרשת "+p.p;
+  var isErevYKLbl=(todayKey()===20260920);
+  var isYKLbl=(todayKey()===20260921);
+  label+= isYKLbl ? " — יום הכיפורים" : isErevYKLbl ? " — ערב יום הכיפורים" : isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isTsomGed ? " — צום גדליה" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : (todayKey()===20260813||todayKey()===20260814) ? " — ראש חודש אלול" : " — ראש חודש סיון") : isHolLbl ? " — "+p.p : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
@@ -770,8 +742,31 @@ function renderToday() {
   var isTishaBAVTomorrow=(tomorrowKey===20260723);
   var isErevRHTomorrow=(tomorrowKey===20260911);
   var isTsomGedalyahTomorrow=(tomorrowKey===20260914);
+  var isErevYKTomorrow=(tomorrowKey===20260920);
+  var isYKTomorrow=(tomorrowKey===20260921);
   var shacharitTomorrow;
-  if(isErevRHTomorrow){
+  if(isErevYKTomorrow){
+    shacharitTomorrow='<div class="pgrid">'
+      +'<div class="pc"><div class="pname">סליחות ושחרית א\'</div><div class="ptime">6:05</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">סליחות ושחרית ב\'</div><div class="ptime">6:50</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">סליחות ושחרית ג\'</div><div class="ptime">8:20</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">מנחה גדולה</div><div class="ptime">13:30</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">תפילת זכה</div><div class="ptime">18:00</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">הדלקת נרות</div><div class="ptime">18:02</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">כל נדרי</div><div class="ptime">18:20</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">מעריב</div><div class="ptime">19:02</div><div class="psub"></div></div>'
+      +'</div>';
+  } else if(isYKTomorrow){
+    shacharitTomorrow='<div class="pgrid">'
+      +'<div class="pc"><div class="pname">שחרית</div><div class="ptime">7:30</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">המלך</div><div class="ptime">8:00</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">יזכור</div><div class="ptime">10:30</div><div class="psub">משוער</div></div>'
+      +'<div class="pc"><div class="pname">מנחה</div><div class="ptime">16:15</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">נעילה</div><div class="ptime">17:25</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">מעריב</div><div class="ptime">19:04</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">צאת הצום</div><div class="ptime">19:14</div><div class="psub"></div></div>'
+      +'</div>';
+  } else if(isErevRHTomorrow){
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">סליחות</div><div class="ptime">5:55</div><div class="psub"></div></div>'
       +'<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">6:40</div><div class="psub">ברכו 6:50</div></div>'
@@ -814,7 +809,8 @@ function renderToday() {
   }
   if(isMotzei()){
     var isHolTmr=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
-    content.innerHTML='<div class="tomorrow-box"><div class="tb-label">מוצאי שבת — תפילות שחרית מחר</div>'+(isHolTmr?'<div class="tb-name">'+p.p+'</div>':'<div class="tb-name">פרשת '+p.p+'</div>')+'</div>'+shacharitTomorrow;
+    var tmrName=isErevYKTomorrow?'ערב יום הכיפורים':isYKTomorrow?'יום הכיפורים':null;
+    content.innerHTML='<div class="tomorrow-box"><div class="tb-label">מוצאי שבת — תפילות שחרית מחר</div>'+(tmrName?'<div class="tb-name">'+tmrName+'</div>':isHolTmr?'<div class="tb-name">'+p.p+'</div>':'<div class="tb-name">פרשת '+p.p+'</div>')+'</div>'+shacharitTomorrow;
     return;
   }
   var prayers=getTodayPrayers(), n=nowMins(), nf=false, html='<div class="pgrid">', i, pr, pm, past, isNext;
@@ -825,7 +821,7 @@ function renderToday() {
   }
   // If all prayers done - show tomorrow shacharit
   if(!nf){
-    var tmrwTitle=isTishaBAVTomorrow?'תפילות מחר — תשעה באב':isErevRHTomorrow?'תפילות מחר — ערב ראש השנה':isTsomGedalyahTomorrow?'תפילות מחר — צום גדליה':'שחרית מחר';
+    var tmrwTitle=isTishaBAVTomorrow?'תפילות מחר — תשעה באב':isErevRHTomorrow?'תפילות מחר — ערב ראש השנה':isTsomGedalyahTomorrow?'תפילות מחר — צום גדליה':isErevYKTomorrow?'תפילות מחר — ערב יום הכיפורים':isYKTomorrow?'תפילות מחר — יום הכיפורים':'שחרית מחר';
     content.innerHTML=html+'</div><div style="margin-top:.8rem;"><div class="sec-title" style="margin-top:0;">'+tmrwTitle+'</div>'+shacharitTomorrow+'</div>';
   } else {
     content.innerHTML=html+'</div>';
@@ -1347,20 +1343,6 @@ try{renderShabbat();}catch(e){}
 try{renderFixed();}catch(e){}
 try{renderCal();}catch(e){}
 try{renderAnns();}catch(e){}
-(function(){
-  var tk=todayKey();
-  var hide=[];
-  if(tk>20260906||(tk===20260906&&nowMins()>=120))hide.push('sel-col-1');
-  if(tk>20260910)hide.push('sel-col-2');
-  if(tk>20260911)hide.push('sel-col-3');
-  if(tk>=20260914)hide.push('sel-col-tzg');
-  if(tk>20260920)hide.push('sel-col-4');
-  if(tk>20260921)hide.push('sel-col-5');
-  hide.forEach(function(c){
-    var els=document.querySelectorAll('.'+c);
-    els.forEach(function(el){el.style.display='none';});
-  });
-})();
 setInterval(updateClock,1000);
 setInterval(function(){try{updateNext();}catch(e){} try{renderToday();}catch(e){}},30000);
 </script>
