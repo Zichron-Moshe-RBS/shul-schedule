@@ -456,6 +456,7 @@ function pad(n) { return ('0'+n).slice(-2); }
 function nowMins() { var n=new Date(); return n.getHours()*60+n.getMinutes(); }
 function todayKey() { var n=new Date(); return n.getFullYear()*10000+(n.getMonth()+1)*100+n.getDate(); }
 function dateKey(s) { return s.y*10000+s.mo*100+s.d; }
+function isShabbatDate(tk) { for (var i=0;i<SCH.length;i++) { if (dateKey(SCH[i])===tk) { return true; } } return false; }
 
 function getAI() {
   var tk=todayKey(), nm=nowMins();
@@ -486,7 +487,7 @@ function getHebDate() {
   return HD[todayKey()]||"";
 }
 
-function getTodayPrayers() {
+function getTodayPrayersRaw() {
   var isFri=new Date().getDay()===5, p=SCH[AI], arr, result, i;
   if (isMotzei()) { return null; }
   if (isShabbat()) {
@@ -731,6 +732,22 @@ function getTodayPrayers() {
   ];
 }
 
+// מניין נוסף שחרית 09:00 — ימות החול בלבד (לא שבת), מ-22/9 ועד סוף חודש חשוון (10/11)
+function addExtraMinyan(arr) {
+  if (!arr || isShabbat()) { return arr; }
+  var tk=todayKey();
+  if (tk<20260922 || tk>20261110) { return arr; }
+  var entry={name:"מניין נוסף — שחרית",time:"9:00",sub:""};
+  var out=arr.slice(), idx=out.length, i;
+  for (i=0;i<out.length;i++) { if (pt(out[i].time)>pt(entry.time)) { idx=i; break; } }
+  out.splice(idx,0,entry);
+  return out;
+}
+
+function getTodayPrayers() {
+  return addExtraMinyan(getTodayPrayersRaw());
+}
+
 function renderToday() {
   var dayNames=["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
   var p=SCH[AI], hd=getHebDate();
@@ -815,10 +832,12 @@ function renderToday() {
       +'<div class="pc"><div class="pname">סיום הצום</div><div class="ptime">20:12</div><div class="psub"></div></div>'
       +'</div>';
   } else {
+    var isExtraMinyanTomorrow=(tomorrowKey>=20260922 && tomorrowKey<=20261110 && !isShabbatDate(tomorrowKey));
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">'+(isRCTomorrow?'6:05':'6:15')+'</div><div class="psub">ברכו '+(isRCTomorrow?'6:15':'6:25')+'</div></div>'
       +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
       +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">8:30</div><div class="psub">ברכו 8:45</div></div>'
+      +(isExtraMinyanTomorrow?'<div class="pc"><div class="pname">מניין נוסף — שחרית</div><div class="ptime">9:00</div><div class="psub"></div></div>':'')
       +'</div>';
   }
   if(isMotzei()){
