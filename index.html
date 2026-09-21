@@ -151,6 +151,9 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div id="ykkBanner" style="display:none;background:#f5d98a;color:#3d2200;padding:.75rem 1.2rem;text-align:center;font-family:'Frank Ruhl Libre',serif;font-size:1rem;font-weight:700;border-bottom:2px solid #c9a96e;">
   ⏰ תזכורת: תפילת יום כיפור קטן היום בשעה 13:15
 </div>
+<div id="extraMinyanBanner" style="display:none;background:#f5d98a;color:#3d2200;padding:.75rem 1.2rem;text-align:center;font-family:'Frank Ruhl Libre',serif;font-size:1rem;font-weight:700;border-bottom:2px solid #c9a96e;">
+  🕘 מניין נוסף לשחרית בשעה 9:00 — בימות החול
+</div>
 <div id="tsomBanner" style="display:none;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#e0d7c6;padding:1rem 1.5rem;text-align:center;direction:rtl;border-bottom:2px solid #8a9bb5;">
   <div style="font-size:1.2rem;font-weight:700;font-family:'Frank Ruhl Libre',serif;">✡ צום י״ז בתמוז תשפ״ו ✡</div>
   <div style="font-size:.85rem;opacity:.8;margin-top:4px;">יהי רצון שיהפך לששון ולשמחה</div>
@@ -182,7 +185,6 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
 <div class="main">
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
-    <button class="tab-btn" onclick="sw('selichot')">יום הכיפורים</button>
     <button class="tab-btn" onclick="sw('shabbat')" id="shabbatTabBtn">שבת קרובה</button>
     <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
@@ -196,36 +198,6 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   <div class="tab-content active" id="tab-today">
     <div class="sec-title"><span id="todayLbl">תפילות היום</span></div>
 <div id="todayContent"></div>
-  </div>
-
-  <div class="tab-content" id="tab-selichot">
-    <div class="sec-title">יום ראשון — ערב יום הכיפורים</div>
-    <div class="fb">
-      <div class="fr"><span class="fl">סליחות ושחרית א'</span><span class="ft">6:05</span></div>
-      <div class="fr"><span class="fl">סליחות ושחרית ב'</span><span class="ft">6:50</span></div>
-      <div class="fr"><span class="fl">סליחות ושחרית ג'</span><span class="ft">8:20</span></div>
-      <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:30</span></div>
-    </div>
-    <div class="sec-title">יום הכיפורים</div>
-    <div class="fb">
-      <div class="fr"><span class="fl">תפילת זכה</span><span class="ft">18:00</span></div>
-      <div class="fr"><span class="fl">הדלקת נרות</span><span class="ft">18:02</span></div>
-      <div class="fr"><span class="fl">כל נדרי</span><span class="ft">18:20</span></div>
-      <div class="fr"><span class="fl">שקיעת החמה</span><span class="ft">18:42</span></div>
-      <div class="fr"><span class="fl">מעריב</span><span class="ft">19:02</span></div>
-    </div>
-    <div class="fb">
-      <div class="fr"><span class="fl">שחרית</span><span class="ft">7:30</span></div>
-      <div class="fr"><span class="fl">המלך</span><span class="ft">8:00</span></div>
-      <div class="fr"><span class="fl">יזכור (משוער)</span><span class="ft">10:30</span></div>
-    </div>
-    <div class="fb">
-      <div class="fr"><span class="fl">מנחה</span><span class="ft">16:15</span></div>
-      <div class="fr"><span class="fl">נעילה</span><span class="ft">17:25</span></div>
-      <div class="fr"><span class="fl">מעריב</span><span class="ft">19:04</span></div>
-      <div class="fr"><span class="fl">צאת הצום</span><span class="ft">19:14</span></div>
-    </div>
-    <p style="text-align:center;font-weight:700;color:#3d2200;font-family:'Frank Ruhl Libre',serif;margin-top:.8rem;font-size:1.05rem;">גמר חתימה טובה</p>
   </div>
 
   <div class="tab-content" id="tab-seder">
@@ -1063,6 +1035,12 @@ function updateClock() {
     var isYKK = (tkNow===20260514 && nmNow<840);
     ykkBanner.style.display = isYKK ? 'block' : 'none';
   }
+  // מניין נוסף שחרית 9:00 — הודעה עד יום שישי הקרוב (25/9)
+  var extraMinyanBanner=document.getElementById('extraMinyanBanner');
+  if(extraMinyanBanner){
+    var tkEM=todayKey();
+    extraMinyanBanner.style.display=(tkEM>=20260921 && tkEM<=20260925)?'block':'none';
+  }
   var lagBanner=document.getElementById('lagBanner');
   if(lagBanner){
     var tk=todayKey(), nm2=nowMins();
@@ -1357,7 +1335,7 @@ function renderZmanim() {
 }
 
 function sw(name){
-  var names=['today','selichot','shabbat','fixed','shiurim','cal','mazel','ann','donate','share'];
+  var names=['today','shabbat','fixed','shiurim','cal','mazel','ann','donate','share'];
   var btns=document.querySelectorAll('.tab-btn');
   var tabs=document.querySelectorAll('.tab-content');
   var i;
