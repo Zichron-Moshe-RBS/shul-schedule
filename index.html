@@ -186,8 +186,8 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
   <div class="tabs">
     <button class="tab-btn active" onclick="sw('today')">היום</button>
     <button class="tab-btn" onclick="sw('shabbat')" id="shabbatTabBtn">שבת קרובה</button>
-    <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
     <button class="tab-btn" onclick="sw('shiurimSukkot')">שיעורים בחג הסוכות</button>
+    <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
     <button class="tab-btn" onclick="sw('ann')">הודעות כלליות</button>
@@ -1421,7 +1421,7 @@ function renderZmanim() {
 }
 
 function sw(name){
-  var names=['today','shabbat','fixed','shiurimSukkot','shiurim','cal','ann','donate','share'];
+  var names=['today','shabbat','shiurimSukkot','fixed','shiurim','cal','ann','donate','share'];
   var btns=document.querySelectorAll('.tab-btn');
   var tabs=document.querySelectorAll('.tab-content');
   var i;
