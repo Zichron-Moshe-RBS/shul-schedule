@@ -374,8 +374,8 @@ var SCH = [
   {p:"ראש השנה",        y:2026,mo:9, d:12, mk:"18:40",m1:"19:20",ks:null,mv:null,ms:null,mg_s:null,mk_s:null,tz:null,m1s:null,se:null},
   {p:"האזינו-שובה",     y:2026,mo:9, d:19, mk:"18:30",m1:"19:08",ks:"18:29",mv:"19:04",ms:"8:30",mg_s:"13:30",mk_s:"18:03",tz:"19:17",m1s:"19:37",se:"17:10"},
   {p:"סוכות",           y:2026,mo:9, d:26, mk:"18:20",m1:"19:00",ks:null,mv:null,ms:null,mg_s:null,mk_s:null,tz:null,m1s:null,se:null},
-  {p:"בראשית",          y:2026,mo:10,d:3,  mk:"18:03",m1:"18:43",ks:"18:02",mv:"18:37",ms:"8:30",mg_s:"13:30",mk_s:"17:36",tz:"18:50",m1s:"19:10",se:null},
-  {p:"נח",              y:2026,mo:10,d:10, mk:"17:55",m1:"18:35",ks:"17:54",mv:"18:29",ms:"8:30",mg_s:"13:30",mk_s:"17:28",tz:"18:42",m1s:"19:02",se:null}
+  {p:"שמחת תורה",       y:2026,mo:10,d:3,  mk:"18:12",m1:"18:52",ks:null,mv:null,ms:null,mg_s:null,mk_s:null,tz:null,m1s:null,se:null},
+  {p:"בראשית",          y:2026,mo:10,d:10, mk:"17:55",m1:"18:35",ks:"17:54",mv:"18:29",ms:"8:30",mg_s:"13:30",mk_s:"17:28",tz:"18:42",m1s:"19:02",se:null}
 ];
 
 var HD = {
@@ -504,7 +504,37 @@ function getTodayPrayersRaw() {
       {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
       {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
-      {name:"מנחה גדולה",time:"13:30",sub:"ערב סוכות"}
+      {name:"מנחה גדולה",time:"13:30",sub:"ערב סוכות"},
+      {name:"הדלקת נרות שבת ויו\"ט",time:"17:55",sub:""},
+      {name:"מנחה קטנה",time:"18:20",sub:""}
+    ];
+  }
+  // חול המועד סוכות (27/9-1/10)
+  var isCholHamoedSukkot=(todayKey()>=20260927 && todayKey()<=20261001);
+  if(isCholHamoedSukkot){
+    return [
+      {name:"שחרית א' — ותיקין",time:"6:15",sub:"6:20"},
+      {name:"דף יומי — ר' פוגל",time:"7:00",sub:""},
+      {name:"דף יומי — ר' זילבר",time:"7:20",sub:"מיד אחרי ותיקין"},
+      {name:"שחרית ב'",time:"8:00",sub:"ברכו 8:15"},
+      {name:"דף יומי — ר' באום",time:"8:30",sub:""},
+      {name:"שחרית ג'",time:"9:10",sub:"ברכו 9:25"},
+      {name:"מנחה גדולה",time:"13:20",sub:""},
+      {name:"מנחה קטנה",time:"18:12",sub:""},
+      {name:"מעריב א'",time:"18:52",sub:""},
+      {name:"דף יומי — ר' זילבר",time:"21:00",sub:""},
+      {name:"מעריב ב'",time:"22:00",sub:""}
+    ];
+  }
+  // יום שישי הושענא רבא / ערב שמחת תורה — לפני בדיקת יום שישי רגיל
+  var isHoshanaRabba=(todayKey()===20261002);
+  if(isHoshanaRabba){
+    return [
+      {name:"שחרית א' — ותיקין",time:"6:10",sub:""},
+      {name:"שחרית ב'",time:"8:15",sub:"ברכו 8:35, אין מניין ג'"},
+      {name:"מנחה גדולה",time:"13:30",sub:"ערב שמחת תורה"},
+      {name:"הדלקת נרות שבת ויו\"ט",time:"17:46",sub:""},
+      {name:"מנחה קטנה",time:"18:11",sub:""}
     ];
   }
   if (isFri) {
@@ -727,11 +757,14 @@ function renderToday() {
   var isErevRCAv=(todayKey()===20260714);
   var isErevTBA=(todayKey()===20260722);
   var isTBA=(todayKey()===20260723);
-  var isHolLbl=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
+  var isHolLbl=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="שמחת תורה"||p.p==="פסח"||p.p==="שבועות");
   var isTsomGed=(todayKey()===20260914);
   var isErevYKLbl=(todayKey()===20260920);
   var isYKLbl=(todayKey()===20260921);
-  label+= isYKLbl ? " — יום הכיפורים" : isErevYKLbl ? " — ערב יום הכיפורים" : isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isTsomGed ? " — צום גדליה" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : (todayKey()===20260813||todayKey()===20260814) ? " — ראש חודש אלול" : " — ראש חודש סיון") : isHolLbl ? " — "+p.p : " — פרשת "+p.p;
+  var isErevSukkotLbl=(todayKey()===20260925);
+  var isCholHamoedSukkotLbl=(todayKey()>=20260927 && todayKey()<=20261001);
+  var isHoshanaRabbaLbl=(todayKey()===20261002);
+  label+= isYKLbl ? " — יום הכיפורים" : isErevYKLbl ? " — ערב יום הכיפורים" : isErevSukkotLbl ? " — ערב סוכות" : isCholHamoedSukkotLbl ? " — חול המועד סוכות" : isHoshanaRabbaLbl ? " — הושענא רבא" : isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isTsomGed ? " — צום גדליה" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : (todayKey()===20260813||todayKey()===20260814) ? " — ראש חודש אלול" : " — ראש חודש סיון") : isHolLbl ? " — "+p.p : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
@@ -744,8 +777,21 @@ function renderToday() {
   var isTsomGedalyahTomorrow=(tomorrowKey===20260914);
   var isErevYKTomorrow=(tomorrowKey===20260920);
   var isYKTomorrow=(tomorrowKey===20260921);
+  var isCholHamoedSukkotTomorrow=(tomorrowKey>=20260927 && tomorrowKey<=20261001);
   var shacharitTomorrow;
-  if(isErevYKTomorrow){
+  if(isCholHamoedSukkotTomorrow){
+    shacharitTomorrow='<div class="pgrid">'
+      +'<div class="pc"><div class="pname">שחרית א\' — ותיקין</div><div class="ptime">6:15</div><div class="psub">6:20</div></div>'
+      +'<div class="pc"><div class="pname">דף יומי — ר\' פוגל</div><div class="ptime">7:00</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">דף יומי — ר\' זילבר</div><div class="ptime">7:20</div><div class="psub">מיד אחרי ותיקין</div></div>'
+      +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">8:00</div><div class="psub">ברכו 8:15</div></div>'
+      +'<div class="pc"><div class="pname">דף יומי — ר\' באום</div><div class="ptime">8:30</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">9:10</div><div class="psub">ברכו 9:25</div></div>'
+      +'<div class="pc"><div class="pname">מנחה גדולה</div><div class="ptime">13:20</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">מנחה קטנה</div><div class="ptime">18:12</div><div class="psub"></div></div>'
+      +'<div class="pc"><div class="pname">מעריב א\'</div><div class="ptime">18:52</div><div class="psub"></div></div>'
+      +'</div>';
+  } else if(isErevYKTomorrow){
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">סליחות ושחרית א\'</div><div class="ptime">6:05</div><div class="psub"></div></div>'
       +'<div class="pc"><div class="pname">סליחות ושחרית ב\'</div><div class="ptime">6:50</div><div class="psub"></div></div>'
@@ -810,8 +856,8 @@ function renderToday() {
       +'</div>';
   }
   if(isMotzei()){
-    var isHolTmr=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
-    var tmrName=isErevYKTomorrow?'ערב יום הכיפורים':isYKTomorrow?'יום הכיפורים':null;
+    var isHolTmr=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="שמחת תורה"||p.p==="פסח"||p.p==="שבועות");
+    var tmrName=isErevYKTomorrow?'ערב יום הכיפורים':isYKTomorrow?'יום הכיפורים':isCholHamoedSukkotTomorrow?'חול המועד סוכות':null;
     content.innerHTML='<div class="tomorrow-box"><div class="tb-label">מוצאי שבת — תפילות שחרית מחר</div>'+(tmrName?'<div class="tb-name">'+tmrName+'</div>':isHolTmr?'<div class="tb-name">'+p.p+'</div>':'<div class="tb-name">פרשת '+p.p+'</div>')+'</div>'+shacharitTomorrow;
     return;
   }
@@ -823,7 +869,7 @@ function renderToday() {
   }
   // If all prayers done - show tomorrow shacharit
   if(!nf){
-    var tmrwTitle=isTishaBAVTomorrow?'תפילות מחר — תשעה באב':isErevRHTomorrow?'תפילות מחר — ערב ראש השנה':isTsomGedalyahTomorrow?'תפילות מחר — צום גדליה':isErevYKTomorrow?'תפילות מחר — ערב יום הכיפורים':isYKTomorrow?'תפילות מחר — יום הכיפורים':'שחרית מחר';
+    var tmrwTitle=isTishaBAVTomorrow?'תפילות מחר — תשעה באב':isErevRHTomorrow?'תפילות מחר — ערב ראש השנה':isTsomGedalyahTomorrow?'תפילות מחר — צום גדליה':isErevYKTomorrow?'תפילות מחר — ערב יום הכיפורים':isYKTomorrow?'תפילות מחר — יום הכיפורים':isCholHamoedSukkotTomorrow?'תפילות מחר — חול המועד סוכות':'שחרית מחר';
     content.innerHTML=html+'</div><div style="margin-top:.8rem;"><div class="sec-title" style="margin-top:0;">'+tmrwTitle+'</div>'+shacharitTomorrow+'</div>';
   } else {
     content.innerHTML=html+'</div>';
@@ -880,7 +926,7 @@ function renderShabbat() {
   if(shkia_erev){fri.push({n:"שקיעה",t:shkia_erev});}
   if(p.mv){fri.push({n:"מעריב",t:p.mv});}
   fri.sort(function(a,b){return pt(a.t)-pt(b.t);});
-  var isHoliday=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="פסח"||p.p==="שבועות");
+  var isHoliday=(p.p==="ראש השנה"||p.p==="יום כיפור"||p.p==="סוכות"||p.p==="שמיני עצרת"||p.p==="שמחת תורה"||p.p==="פסח"||p.p==="שבועות");
   var holidayDisplay=p.p==="ראש השנה"?'ראש השנה תשפ"ז':p.p;
   var i, html='<div class="sh-hdr"><div>'+(isHoliday?'<div class="sh-pname" style="font-size:1.2rem;">'+holidayDisplay+'</div>':'<div class="sh-plabel">פרשת השבוע</div><div class="sh-pname">'+p.p+'</div>')+'</div><div class="sh-date">'+p.d+'.'+p.mo+'.'+p.y+'</div></div>';
   if(isHoliday && p.p==="ראש השנה"){
@@ -909,6 +955,39 @@ function renderShabbat() {
     html+='<div class="sh-row" style="font-size:.8rem;color:#8b7355;text-align:center;padding:.3rem;">תשליך לאחר מנחה</div>';
     html+=shRow("מעריב / צאת החג","19:25");
     html+=shRow("דף היומי ר׳ באום","21:00");
+  } else if(isHoliday && p.p==="סוכות"){
+    html+='<div class="sh-sec">ערב שבת חג הסוכות — יום שישי</div>';
+    html+=shRow("מנחה גדולה","13:30");
+    html+=shRow("הדלקת נרות שבת ויו\"ט","17:55");
+    html+=shRow("מנחה קטנה","18:20");
+    html+=shRow("דרשה","הרב ידידיה ברזון שליט\"א");
+    html+='<div class="sh-sec">שבת חג הסוכות</div>';
+    html+=shRow("מעריב","18:55");
+    html+=shRow("שחרית","8:30 (הא-ל 8:55)");
+    html+=shRow("מנחה גדולה","13:30");
+    html+=shRow("מנחה קטנה","17:54");
+    html+=shRow("מעריב א' — צאת יו\"ט","19:07");
+    html+=shRow("מעריב ב'","19:27");
+    html+=shRow("דף יומי ר' זילבר","20:15");
+    html+=shRow("דף יומי ר' באום","20:30");
+    html+=shRow("דף יומי ר' זילבר","21:15");
+  } else if(isHoliday && p.p==="שמחת תורה"){
+    html+='<div class="sh-sec">יום שישי הושענא רבא / ערב שמחת תורה</div>';
+    html+=shRow("שחרית א' — ותיקין","6:10");
+    html+=shRow("שחרית ב'","8:15 (ברכו 8:35, אין מניין ג')");
+    html+=shRow("מנחה גדולה","13:30");
+    html+=shRow("הדלקת נרות שבת ויו\"ט","17:46");
+    html+=shRow("מנחה קטנה","18:11");
+    html+=shRow("דרשה","ר' שמואל עזרא גרוס שליט\"א");
+    html+='<div class="sh-sec">שמחת תורה</div>';
+    html+=shRow("מעריב","18:46");
+    html+=shRow("הקפות","19:00");
+    html+=shRow("שחרית","8:30 (הא-ל 8:55)");
+    html+=shRow("הקפות","9:25");
+    html+=shRow("מנחה גדולה","אחרי מוסף");
+    html+=shRow("מעריב — צאת יו\"ט","18:58");
+    html+=shRow("דף יומי ר' זילבר","20:15");
+    html+=shRow("דף יומי ר' באום","20:30");
   } else if(isHoliday){
     html+='<div style="text-align:center;color:#8b7355;font-size:.9rem;padding:2rem 1rem;">הזמנים יתעדכנו בקרוב</div>';
   } else {
@@ -1347,7 +1426,7 @@ try{updateNext();}catch(e){}
 try{renderZmanim();}catch(e){}
 try{renderToday();}catch(e){}
 try{renderShabbat();}catch(e){}
-(function(){var btn=document.getElementById('shabbatTabBtn');if(btn&&SCH[AI]&&(SCH[AI].p==="ראש השנה"||SCH[AI].p==="יום כיפור"||SCH[AI].p==="סוכות"||SCH[AI].p==="שמיני עצרת")){btn.textContent=SCH[AI].p==="ראש השנה"?'ראש השנה':SCH[AI].p;}})();
+(function(){var btn=document.getElementById('shabbatTabBtn');if(btn&&SCH[AI]&&(SCH[AI].p==="ראש השנה"||SCH[AI].p==="יום כיפור"||SCH[AI].p==="סוכות"||SCH[AI].p==="שמיני עצרת"||SCH[AI].p==="שמחת תורה")){btn.textContent=SCH[AI].p==="ראש השנה"?'ראש השנה':SCH[AI].p;}})();
 try{renderFixed();}catch(e){}
 try{renderCal();}catch(e){}
 try{renderAnns();}catch(e){}
