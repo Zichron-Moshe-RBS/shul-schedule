@@ -187,9 +187,9 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
     <button class="tab-btn active" onclick="sw('today')">היום</button>
     <button class="tab-btn" onclick="sw('shabbat')" id="shabbatTabBtn">שבת קרובה</button>
     <button class="tab-btn" onclick="sw('fixed')">זמנים קבועים</button>
+    <button class="tab-btn" onclick="sw('shiurimSukkot')">שיעורי חג הסוכות</button>
     <button class="tab-btn" onclick="sw('shiurim')">שיעורים</button>
     <button class="tab-btn" onclick="sw('cal')">לוח שנה</button>
-    <button class="tab-btn" onclick="sw('mazel')">הודעות מזל טוב</button>
     <button class="tab-btn" onclick="sw('ann')">הודעות כלליות</button>
     <button class="tab-btn" onclick="sw('donate')">תרומות</button>
     <button class="tab-btn" onclick="sw('share')">שיתוף</button>
@@ -272,6 +272,16 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
       <div class="fr"><span class="fl">מעריב ב׳</span><span class="ft">20 דק׳ אחרי צאת השבת</span></div>
     </div>
     <p style="font-size:.75rem;color:#8b7355;margin-top:.5rem;text-align:center;">לזמנים המדויקים של השבוע — ראה לשונית "שבת קרובה"</p>
+  </div>
+
+    <div class="tab-content" id="tab-shiurimSukkot">
+    <div class="sec-title">דף היומי בחול המועד סוכות</div>
+    <div class="fb">
+      <div class="fr"><span class="fl">ר׳ פוגל</span><span class="ft">7:00</span></div>
+      <div class="fr"><span class="fl">ר׳ זילבר (מיד אחרי ותיקין)</span><span class="ft">7:20</span></div>
+      <div class="fr"><span class="fl">ר׳ באום</span><span class="ft">8:30</span></div>
+      <div class="fr"><span class="fl">ר׳ זילבר</span><span class="ft">21:00</span></div>
+    </div>
   </div>
 
     <div class="tab-content" id="tab-shiurim">
@@ -1411,7 +1421,7 @@ function renderZmanim() {
 }
 
 function sw(name){
-  var names=['today','shabbat','fixed','shiurim','cal','mazel','ann','donate','share'];
+  var names=['today','shabbat','fixed','shiurimSukkot','shiurim','cal','ann','donate','share'];
   var btns=document.querySelectorAll('.tab-btn');
   var tabs=document.querySelectorAll('.tab-content');
   var i;
