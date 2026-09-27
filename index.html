@@ -518,8 +518,9 @@ function getTodayPrayers() {
   // חול המועד סוכות (27/9-1/10)
   var isCholHamoedSukkot=(todayKey()>=20260927 && todayKey()<=20261001);
   if(isCholHamoedSukkot){
+    var vatikinTime=(todayKey()>=20260930)?"6:20":"6:15";
     return [
-      {name:"שחרית א' — ותיקין",time:"6:15",sub:"6:20"},
+      {name:"שחרית א' — ותיקין",time:vatikinTime,sub:""},
       {name:"דף יומי — ר' פוגל",time:"7:00",sub:""},
       {name:"דף יומי — ר' זילבר",time:"7:20",sub:"מיד אחרי ותיקין"},
       {name:"שחרית ב'",time:"8:00",sub:"ברכו 8:15"},
@@ -770,8 +771,9 @@ function renderToday() {
   var isCholHamoedSukkotTomorrow=(tomorrowKey>=20260927 && tomorrowKey<=20261001);
   var shacharitTomorrow;
   if(isCholHamoedSukkotTomorrow){
+    var vatikinTimeTomorrow=(tomorrowKey>=20260930)?"6:20":"6:15";
     shacharitTomorrow='<div class="pgrid">'
-      +'<div class="pc"><div class="pname">שחרית א\' — ותיקין</div><div class="ptime">6:15</div><div class="psub">6:20</div></div>'
+      +'<div class="pc"><div class="pname">שחרית א\' — ותיקין</div><div class="ptime">'+vatikinTimeTomorrow+'</div><div class="psub"></div></div>'
       +'<div class="pc"><div class="pname">דף יומי — ר\' פוגל</div><div class="ptime">7:00</div><div class="psub"></div></div>'
       +'<div class="pc"><div class="pname">דף יומי — ר\' זילבר</div><div class="ptime">7:20</div><div class="psub">מיד אחרי ותיקין</div></div>'
       +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">8:00</div><div class="psub">ברכו 8:15</div></div>'
