@@ -465,7 +465,7 @@ function getHebDate() {
   return HD[todayKey()]||"";
 }
 
-function getTodayPrayers() {
+function getTodayPrayersRaw() {
   var isFri=new Date().getDay()===5, p=SCH[AI], arr, result, i;
   if (isMotzei()) { return null; }
   if (isShabbat()) {
@@ -738,6 +738,22 @@ function getTodayPrayers() {
   ];
 }
 
+// מניין נוסף שחרית 09:00 — מ-4/10 ועד יום שישי 9/10 (כולל)
+function addExtraMinyan(arr) {
+  if (!arr || isShabbat()) { return arr; }
+  var tk=todayKey();
+  if (tk<20261004 || tk>20261009) { return arr; }
+  var entry={name:"מניין נוסף — שחרית",time:"9:00",sub:""};
+  var out=arr.slice(), idx=out.length, i;
+  for (i=0;i<out.length;i++) { if (pt(out[i].time)>pt(entry.time)) { idx=i; break; } }
+  out.splice(idx,0,entry);
+  return out;
+}
+
+function getTodayPrayers() {
+  return addExtraMinyan(getTodayPrayersRaw());
+}
+
 function renderToday() {
   var dayNames=["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
   var p=SCH[AI], hd=getHebDate();
@@ -839,10 +855,12 @@ function renderToday() {
       +'<div class="pc"><div class="pname">סיום הצום</div><div class="ptime">20:12</div><div class="psub"></div></div>'
       +'</div>';
   } else {
+    var isExtraMinyanTomorrow=(tomorrowKey>=20261004 && tomorrowKey<=20261009);
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">'+(isRCTomorrow?'6:05':'6:15')+'</div><div class="psub">ברכו '+(isRCTomorrow?'6:15':'6:25')+'</div></div>'
       +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
       +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">8:30</div><div class="psub">ברכו 8:45</div></div>'
+      +(isExtraMinyanTomorrow?'<div class="pc"><div class="pname">מניין נוסף — שחרית</div><div class="ptime">9:00</div><div class="psub"></div></div>':'')
       +'</div>';
   }
   if(isMotzei()){
