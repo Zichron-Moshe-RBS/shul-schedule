@@ -594,7 +594,7 @@ function getTodayPrayersRaw() {
       {name:"מעריב",time:"20:00",sub:"ליל חג"}
     ];
   }
-  var isRoshChodesh = (todayKey()===20260615||todayKey()===20260616||todayKey()===20260813||todayKey()===20260814);
+  var isRoshChodesh = (todayKey()===20260615||todayKey()===20260616||todayKey()===20260813||todayKey()===20260814||todayKey()===20261011||todayKey()===20261012);
   if (isRoshChodesh) {
     return [
       {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
@@ -750,7 +750,7 @@ function renderToday() {
   var p=SCH[AI], hd=getHebDate();
   var label="יום "+dayNames[new Date().getDay()];
   if(hd){label+=" | "+hd;}
-  var isRC=(todayKey()===20260615||todayKey()===20260616||todayKey()===20260715||todayKey()===20260813||todayKey()===20260814);
+  var isRC=(todayKey()===20260615||todayKey()===20260616||todayKey()===20260715||todayKey()===20260813||todayKey()===20260814||todayKey()===20261011||todayKey()===20261012);
   var isTsomTmz=(todayKey()===20260702);
   var isErevRCAv=(todayKey()===20260714);
   var isErevTBA=(todayKey()===20260722);
@@ -762,14 +762,14 @@ function renderToday() {
   var isErevSukkotLbl=(todayKey()===20260925);
   var isCholHamoedSukkotLbl=(todayKey()>=20260927 && todayKey()<=20261001);
   var isHoshanaRabbaLbl=(todayKey()===20261002);
-  label+= isYKLbl ? " — יום הכיפורים" : isErevYKLbl ? " — ערב יום הכיפורים" : isErevSukkotLbl ? " — ערב סוכות" : isCholHamoedSukkotLbl ? " — חול המועד סוכות" : isHoshanaRabbaLbl ? " — הושענא רבא" : isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isTsomGed ? " — צום גדליה" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : (todayKey()===20260813||todayKey()===20260814) ? " — ראש חודש אלול" : " — ראש חודש סיון") : isHolLbl ? " — "+p.p : " — פרשת "+p.p;
+  label+= isYKLbl ? " — יום הכיפורים" : isErevYKLbl ? " — ערב יום הכיפורים" : isErevSukkotLbl ? " — ערב סוכות" : isCholHamoedSukkotLbl ? " — חול המועד סוכות" : isHoshanaRabbaLbl ? " — הושענא רבא" : isTBA ? " — תשעה באב" : isErevTBA ? " — ערב תשעה באב" : isTsomTmz ? " — צום י״ז בתמוז" : isTsomGed ? " — צום גדליה" : isErevRCAv ? " — ערב ראש חודש אב" : isRC ? (todayKey()===20260715 ? " — ראש חודש אב" : (todayKey()===20260813||todayKey()===20260814) ? " — ראש חודש אלול" : (todayKey()===20261011||todayKey()===20261012) ? " — ראש חודש חשוון" : " — ראש חודש סיון") : isHolLbl ? " — "+p.p : " — פרשת "+p.p;
   document.getElementById('todayLbl').textContent=label;
 
   var content=document.getElementById('todayContent');
   var now=new Date();
   var tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
   var tomorrowKey=tomorrow.getFullYear()*10000+(tomorrow.getMonth()+1)*100+tomorrow.getDate();
-  var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616||tomorrowKey===20260715||tomorrowKey===20260813||tomorrowKey===20260814);
+  var isRCTomorrow=(tomorrowKey===20260615||tomorrowKey===20260616||tomorrowKey===20260715||tomorrowKey===20260813||tomorrowKey===20260814||tomorrowKey===20261011||tomorrowKey===20261012);
   var isTishaBAVTomorrow=(tomorrowKey===20260723);
   var isErevRHTomorrow=(tomorrowKey===20260911);
   var isTsomGedalyahTomorrow=(tomorrowKey===20260914);
@@ -878,9 +878,10 @@ function renderToday() {
 function updateNext() {
   if(isMotzei()){
     var rcTomorrow=(tomorrowKey()===20260615||tomorrowKey()===20260616);
-    document.getElementById('nName').textContent=rcTomorrow?"שחרית א' — ראש חודש סיון":"שחרית א' מחר";
-    document.getElementById('nTime').textContent=rcTomorrow?"6:05":"6:15";
-    document.getElementById('nCD').textContent=rcTomorrow?"ברכו 6:15":"ברכו 6:25";
+    var rcTomorrowCheshvan=(tomorrowKey()===20261011||tomorrowKey()===20261012);
+    document.getElementById('nName').textContent=rcTomorrowCheshvan?"שחרית א' — ראש חודש חשוון":rcTomorrow?"שחרית א' — ראש חודש סיון":"שחרית א' מחר";
+    document.getElementById('nTime').textContent=(rcTomorrow||rcTomorrowCheshvan)?"6:05":"6:15";
+    document.getElementById('nCD').textContent=(rcTomorrow||rcTomorrowCheshvan)?"ברכו 6:15":"ברכו 6:25";
     return;
   }
   var prayers=getTodayPrayers();
@@ -893,7 +894,7 @@ function updateNext() {
     var diff=pt(next.time)-n, h=Math.floor(diff/60), m=diff%60;
     document.getElementById('nCD').textContent=h>0?"בעוד "+h+" שע' ו-"+m+" דק'":"בעוד "+m+" דקות";
   } else {
-    var rcNext=(tomorrowKey()===20260615||tomorrowKey()===20260616||tomorrowKey()===20260813||tomorrowKey()===20260814);
+    var rcNext=(tomorrowKey()===20260615||tomorrowKey()===20260616||tomorrowKey()===20260813||tomorrowKey()===20260814||tomorrowKey()===20261011||tomorrowKey()===20261012);
     var tbavNext=(tomorrowKey()===20260723);
     var rcNextName=(tomorrowKey()===20260813||tomorrowKey()===20260814)?"שחרית א' — ר\"ח אלול":rcNext?"שחרית א' — ראש חודש":"שחרית מחר";
     document.getElementById('nName').textContent=tbavNext?"שחרית — קינות (מחר)":rcNextName;
