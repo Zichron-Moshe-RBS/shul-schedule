@@ -255,17 +255,17 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
     <div class="sec-title">שבת קודש</div>
     <div class="fb">
       <div class="fr"><span class="fl">מנחה גדולה — יום שישי</span><span class="ft">13:30</span></div>
-      <div class="fr"><span class="fl">מניין שבת מוקדם — מנחה</span><span class="ft">15 דק׳ לפני הפלג המנחה</span></div>
       <div class="fr"><span class="fl">הדלקת נרות</span><span class="ft">25 דק׳ לפני מנחה וקבלת שבת</span></div>
       <div class="fr"><span class="fl">מנחה וקבלת שבת</span><span class="ft">15 דק׳ לפני השקיעה</span></div>
       <div class="fr"><span class="fl">מעריב שבת</span><span class="ft">20 דק׳ אחרי השקיעה</span></div>
+      <div class="fr"><span class="fl">דרשה</span><span class="ft">בין קבלת שבת למעריב</span></div>
+      <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">בליל שבת קודש, בזמן הדרשה</span></div>
       <div class="fr"><span class="fl">שחרית</span><span class="ft">8:30</span></div>
       <div class="fr"><span class="fl">מנחה גדולה שבת</span><span class="ft">13:30</span></div>
-      <div class="fr"><span class="fl">אבות ובנים</span><span class="ft">50 דק׳ לפני מנחה קטנה</span></div>
-      <div class="fr"><span class="fl">תהילים לילדים</span><span class="ft">15 דק׳ לפני מנחה קטנה</span></div>
       <div class="fr"><span class="fl">מנחה קטנה</span><span class="ft">40 דק׳ לפני השקיעה</span></div>
       <div class="fr"><span class="fl">מעריב א׳ — מוצאי שבת</span><span class="ft">בזמן צאת השבת</span></div>
       <div class="fr"><span class="fl">מעריב ב׳</span><span class="ft">20 דק׳ אחרי צאת השבת</span></div>
+      <div class="fr"><span class="fl">אבות ובנים</span><span class="ft">45 דק׳ אחרי צאת השבת</span></div>
     </div>
     <p style="font-size:.75rem;color:#8b7355;margin-top:.5rem;text-align:center;">לזמנים המדויקים של השבוע — ראה לשונית "שבת קרובה"</p>
   </div>
@@ -373,7 +373,29 @@ var SCH = [
   {p:"הושענה רבה ושמחת תורה", y:2026,mo:10,d:3, mk:"18:12",m1:"18:52",ks:null,mv:null,ms:null,mg_s:null,mk_s:null,tz:null,m1s:null,se:null},
   {p:"בראשית",          y:2026,mo:10,d:10, mk:"18:03",m1:"18:43",ks:"18:02",mv:"18:37",ms:"8:30",mg_s:"13:30",mk_s:"17:36",tz:"18:50",m1s:"19:10",se:null},
   {p:"נח",              y:2026,mo:10,d:17, mk:"17:55",m1:"18:35",ks:"17:54",mv:"18:29",ms:"8:30",mg_s:"13:30",mk_s:"17:28",tz:"18:42",m1s:"19:02",se:null},
-  {p:"לך לך",           y:2026,mo:10,d:24, mk:"17:47",m1:"18:27",ks:null,mv:null,ms:"8:30",mg_s:"13:30",mk_s:null,tz:null,m1s:null,se:null}
+  {p:"לך לך",           y:2026,mo:10,d:24, mk:"17:47",m1:"18:27",ks:"17:46",mv:"18:21",ms:"8:30",mg_s:"13:30",mk_s:"17:20",tz:"18:35",m1s:"18:55",se:null},
+  {p:"וירא",            y:2026,mo:10,d:31, mk:"16:40",m1:"17:19",ks:"16:40",mv:"17:25",ms:"8:00",mg_s:"13:00",mk_s:"16:14",tz:"17:28",m1s:"17:48",se:null},
+  {p:"חיי שרה",         y:2026,mo:11,d:7,  mk:"16:35",m1:"17:13",ks:"16:34",mv:"17:19",ms:"8:05",mg_s:"13:00",mk_s:"16:08",tz:"17:23",m1s:"17:43",se:null},
+  {p:"תולדות",          y:2026,mo:11,d:14, mk:"16:30",m1:"17:07",ks:"16:29",mv:"17:14",ms:"8:10",mg_s:"13:00",mk_s:"16:04",tz:"17:19",m1s:"17:39",se:null},
+  {p:"ויצא",            y:2026,mo:11,d:21, mk:"16:26",m1:"17:03",ks:"16:26",mv:"17:11",ms:"8:10",mg_s:"13:00",mk_s:"16:01",tz:"17:16",m1s:"17:36",se:null},
+  {p:"וישלח",           y:2026,mo:11,d:28, mk:"16:24",m1:"17:00",ks:"16:24",mv:"17:09",ms:"8:15",mg_s:"13:00",mk_s:"15:59",tz:"17:15",m1s:"17:35",se:null},
+  {p:"וישב - חנוכה",    y:2026,mo:12,d:5,  mk:"16:23",m1:"16:59",ks:"16:23",mv:"17:08",ms:"8:20",mg_s:"13:00",mk_s:"15:58",tz:"17:15",m1s:"17:35",se:null},
+  {p:"מקץ - חנוכה",     y:2026,mo:12,d:12, mk:"16:23",m1:"16:59",ks:"16:24",mv:"17:09",ms:"8:25",mg_s:"13:00",mk_s:"15:59",tz:"17:16",m1s:"17:36",se:null},
+  {p:"ויגש",            y:2026,mo:12,d:19, mk:"16:25",m1:"17:01",ks:"16:27",mv:"17:12",ms:"8:30",mg_s:"13:00",mk_s:"16:02",tz:"17:19",m1s:"17:39",se:null},
+  {p:"ויחי",            y:2026,mo:12,d:26, mk:"16:27",m1:"17:04",ks:"16:30",mv:"17:15",ms:"8:30",mg_s:"13:00",mk_s:"16:06",tz:"17:22",m1s:"17:42",se:null},
+  {p:"שמות",            y:2027,mo:1, d:2,  mk:"16:31",m1:"17:09",ks:"16:35",mv:"17:20",ms:"8:30",mg_s:"13:00",mk_s:"16:10",tz:"17:27",m1s:"17:47",se:null},
+  {p:"וארא",            y:2027,mo:1, d:9,  mk:"16:36",m1:"17:14",ks:"16:40",mv:"17:25",ms:"8:30",mg_s:"13:00",mk_s:"16:16",tz:"17:32",m1s:"17:52",se:null},
+  {p:"בא",              y:2027,mo:1, d:16, mk:"16:42",m1:"17:20",ks:"16:46",mv:"17:31",ms:"8:30",mg_s:"13:00",mk_s:"16:22",tz:"17:38",m1s:"17:58",se:null},
+  {p:"בשלח - שירה",     y:2027,mo:1, d:23, mk:"16:48",m1:"17:26",ks:"16:52",mv:"17:37",ms:"8:30",mg_s:"13:00",mk_s:"16:28",tz:"17:44",m1s:"18:04",se:null},
+  {p:"יתרו",            y:2027,mo:1, d:30, mk:"16:54",m1:"17:33",ks:"16:59",mv:"17:44",ms:"8:30",mg_s:"13:00",mk_s:"16:35",tz:"17:50",m1s:"18:10",se:null},
+  {p:"משפטים",          y:2027,mo:2, d:6,  mk:"17:00",m1:"17:39",ks:"17:05",mv:"17:50",ms:"8:30",mg_s:"13:00",mk_s:"16:41",tz:"17:55",m1s:"18:15",se:null},
+  {p:"תרומה",           y:2027,mo:2, d:13, mk:"17:07",m1:"17:45",ks:"17:11",mv:"17:56",ms:"8:30",mg_s:"13:00",mk_s:"16:47",tz:"18:01",m1s:"18:21",se:null},
+  {p:"תצוה",            y:2027,mo:2, d:20, mk:"17:13",m1:"17:51",ks:"17:17",mv:"18:02",ms:"8:30",mg_s:"13:00",mk_s:"16:53",tz:"18:07",m1s:"18:27",se:null},
+  {p:"כי תשא",          y:2027,mo:2, d:27, mk:"17:19",m1:"17:57",ks:"17:23",mv:"18:08",ms:"8:25",mg_s:"13:00",mk_s:"16:58",tz:"18:12",m1s:"18:32",se:null},
+  {p:"ויקהל - שקלים",   y:2027,mo:3, d:6,  mk:"17:24",m1:"18:02",ks:"17:28",mv:"18:13",ms:"8:20",mg_s:"13:00",mk_s:"17:04",tz:"18:17",m1s:"18:37",se:null},
+  {p:"פקודי",           y:2027,mo:3, d:13, mk:"17:29",m1:"18:07",ks:"17:33",mv:"18:18",ms:"8:15",mg_s:"13:00",mk_s:"17:09",tz:"18:22",m1s:"18:42",se:null},
+  {p:"ויקרא - זכור",    y:2027,mo:3, d:20, mk:"17:34",m1:"18:12",ks:"17:38",mv:"18:23",ms:"8:10",mg_s:"13:00",mk_s:"17:13",tz:"18:27",m1s:"18:47",se:null},
+  {p:"צו - פרה",        y:2027,mo:3, d:27, mk:"17:39",m1:"18:17",ks:"18:42",mv:"19:17",ms:"8:30",mg_s:"13:30",mk_s:"18:18",tz:"19:32",m1s:"19:52",se:null}
 ];
 
 var HD = {
@@ -994,10 +1016,11 @@ function renderShabbat() {
   } else {
     html+='<div class="sh-sec">ערב שבת — יום שישי</div>';
     for(i=0;i<fri.length;i++){html+=shRow(fri[i].n,fri[i].t);}
+    html+=shRow("דרשה","בין קבלת שבת למעריב")+shRow("תהילים לילדים","בזמן הדרשה");
     html+='<div class="sh-sec">שבת בבוקר ואחר הצהריים</div>';
-    html+=shRow("שחרית","8:30")+shRow("מנחה גדולה","13:30")+shRow("אבות ובנים","50 דק' לפני מנחה קטנה")+shRow("תהילים לילדים","15 דק' לפני מנחה קטנה")+shRow("מנחה קטנה",p.mk_s);
+    html+=shRow("שחרית","8:30")+shRow("מנחה גדולה","13:30")+shRow("מנחה קטנה",p.mk_s);
     html+='<div class="sh-sec">מוצאי שבת</div>';
-    html+=shRow("צאת השבת / מעריב א'",p.tz)+shRow("מעריב ב'",p.m1s);
+    html+=shRow("צאת השבת / מעריב א'",p.tz)+shRow("מעריב ב'",p.m1s)+shRow("אבות ובנים","45 דק' אחרי צאת השבת");
   }
   document.getElementById('shabbatBlock').innerHTML=html;
 }
