@@ -1024,7 +1024,7 @@ function renderCal() {
     html+='<div class="cal-body'+(isCur?' open':'')+'" id="ct'+i+'">';
     html+='<div class="cal-slbl">ימות החול</div>'+calRow("מנחה קטנה",p.mk)+calRow("מעריב א'",p.m1);
     html+='<div class="cal-slbl">ערב שבת</div>'+friHtml;
-    html+='<div class="cal-slbl">שבת</div>'+calRow("מנחה קטנה שבת",p.mk_s)+calRow("צאת שבת",p.tz)+calRow("מעריב ב'",p.m1s);
+    html+='<div class="cal-slbl">שבת</div>'+calRow("שחרית",p.ms)+calRow("מנחה קטנה שבת",p.mk_s)+calRow("צאת שבת",p.tz)+calRow("מעריב ב'",p.m1s);
     html+='</div></div>';
   }
   document.getElementById('calGrid').innerHTML=html;
@@ -1123,9 +1123,7 @@ function updateClock() {
   }
 }
 
-var ANNS = [
-  "מתגבש שיעור בספר הכוזרי מפי הרב בנימין יעקבזון — כל יום ג' בשעה 21:15. השיעור מועבר בעברית ומסתיים בשעה 22:00, ומיד לאחריו תפילת מעריב."
-];
+var ANNS = [];
 
 function renderAnns() {
   var el = document.getElementById('annList');
