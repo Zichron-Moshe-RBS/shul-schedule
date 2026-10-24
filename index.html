@@ -844,10 +844,11 @@ function renderToday() {
       +'</div>';
   } else {
     var isExtraMinyanTomorrow=(tomorrowKey>=20261004 && tomorrowKey<=20261009);
+    var isShachritGSpecialTomorrow=(tomorrowKey>=20261025 && tomorrowKey<=20261030);
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">'+(isRCTomorrow?'6:05':'6:15')+'</div><div class="psub">ברכו '+(isRCTomorrow?'6:15':'6:25')+'</div></div>'
       +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
-      +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">8:30</div><div class="psub">ברכו 8:45</div></div>'
+      +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">'+(isShachritGSpecialTomorrow?'8:15':'8:30')+'</div><div class="psub">ברכו '+(isShachritGSpecialTomorrow?'8:30':'8:45')+'</div></div>'
       +(isExtraMinyanTomorrow?'<div class="pc"><div class="pname">מניין נוסף — שחרית</div><div class="ptime">9:00</div><div class="psub"></div></div>':'')
       +'</div>';
   }
