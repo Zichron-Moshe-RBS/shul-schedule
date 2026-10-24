@@ -530,10 +530,11 @@ function getTodayPrayersRaw() {
     ];
   }
   if (isFri) {
+    var isShachritGSpecialFri = (todayKey()>=20261025 && todayKey()<=20261030);
     var fri = [
       {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
-      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      isShachritGSpecialFri ? {name:"שחרית ג'",time:"8:15",sub:"ברכו 8:30"} : {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
       {name:"מנחה גדולה",time:"13:30",sub:"ערב שבת"}
     ];
     if(p.se){fri.push({name:"שבת מוקדם",time:p.se,sub:""});}
@@ -712,10 +713,11 @@ function getTodayPrayersRaw() {
       {name:"מעריב ב'",time:"22:00",sub:""}
     ];
   }
+  var isShachritGSpecial = (todayKey()>=20261025 && todayKey()<=20261030);
   var def=[
     {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
     {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
-    {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+    isShachritGSpecial ? {name:"שחרית ג'",time:"8:15",sub:"ברכו 8:30"} : {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
     {name:"מנחה גדולה",time:"13:20",sub:""}
   ];
   if(p.mk){def.push({name:"מנחה קטנה",time:p.mk,sub:""});}
