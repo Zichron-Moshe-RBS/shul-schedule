@@ -347,7 +347,7 @@ var ADMIN_PASS = "zkrmoshe2026";
 var SCH = [
   {p:"לך לך",           y:2026,mo:10,d:24, mk:"17:47",m1:"18:27",ks:"17:46",mv:"18:21",ms:"8:30",mg_s:"13:30",mk_s:"17:20",tz:"18:35",m1s:"18:55",se:null,dst:true},
   {p:"וירא",            y:2026,mo:10,d:31, mk:"16:40",m1:"17:19",ks:"16:40",mv:"17:25",ms:"8:00",mg_s:"13:00",mk_s:"16:14",tz:"17:28",m1s:"17:48",se:null},
-  {p:"חיי שרה",         y:2026,mo:11,d:7,  mk:"16:35",m1:"17:13",ks:"16:34",mv:"17:19",ms:"8:05",mg_s:"13:00",mk_s:"16:08",tz:"17:23",m1s:"17:43",se:null},
+  {p:"חיי שרה",         y:2026,mo:11,d:7,  mk:"16:35",m1:"17:13",ks:"16:34",mv:"17:19",ms:"8:05",mg_s:"13:00",mk_s:"16:08",tz:"17:23",m1s:"17:43",se:null,g3:"8:20"},
   {p:"תולדות",          y:2026,mo:11,d:14, mk:"16:30",m1:"17:07",ks:"16:29",mv:"17:14",ms:"8:10",mg_s:"13:00",mk_s:"16:04",tz:"17:19",m1s:"17:39",se:null},
   {p:"ויצא",            y:2026,mo:11,d:21, mk:"16:26",m1:"17:03",ks:"16:26",mv:"17:11",ms:"8:10",mg_s:"13:00",mk_s:"16:01",tz:"17:16",m1s:"17:36",se:null},
   {p:"וישלח",           y:2026,mo:11,d:28, mk:"16:24",m1:"17:00",ks:"16:24",mv:"17:09",ms:"8:15",mg_s:"13:00",mk_s:"15:59",tz:"17:15",m1s:"17:35",se:null},
@@ -433,6 +433,11 @@ function getAI() {
     }
   }
   return SCH.length-1;
+}
+
+function getRowForDate(tk) {
+  for (var i=0;i<SCH.length;i++) { if (tk<=dateKey(SCH[i])) { return SCH[i]; } }
+  return SCH[SCH.length-1];
 }
 
 var AI = getAI();
@@ -530,11 +535,11 @@ function getTodayPrayersRaw() {
     ];
   }
   if (isFri) {
-    var isShachritGSpecialFri = (todayKey()>=20261025 && todayKey()<=20261030);
+    var g3Fri = p.g3 || "8:30";
     var fri = [
       {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
-      isShachritGSpecialFri ? {name:"שחרית ג'",time:"8:15",sub:"ברכו 8:30"} : {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"שחרית ג'",time:g3Fri,sub:"ברכו "+brachuAfter(g3Fri)},
       {name:"מנחה גדולה",time:"13:30",sub:"ערב שבת"}
     ];
     if(p.se){fri.push({name:"שבת מוקדם",time:p.se,sub:""});}
@@ -713,11 +718,11 @@ function getTodayPrayersRaw() {
       {name:"מעריב ב'",time:"22:00",sub:""}
     ];
   }
-  var isShachritGSpecial = (todayKey()>=20261025 && todayKey()<=20261030);
+  var g3Def = p.g3 || "8:30";
   var def=[
     {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
     {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
-    isShachritGSpecial ? {name:"שחרית ג'",time:"8:15",sub:"ברכו 8:30"} : {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+    {name:"שחרית ג'",time:g3Def,sub:"ברכו "+brachuAfter(g3Def)},
     {name:"מנחה גדולה",time:"13:20",sub:""}
   ];
   if(p.mk){def.push({name:"מנחה קטנה",time:p.mk,sub:""});}
@@ -844,11 +849,11 @@ function renderToday() {
       +'</div>';
   } else {
     var isExtraMinyanTomorrow=(tomorrowKey>=20261004 && tomorrowKey<=20261009);
-    var isShachritGSpecialTomorrow=(tomorrowKey>=20261025 && tomorrowKey<=20261030);
+    var g3Tomorrow = getRowForDate(tomorrowKey).g3 || "8:30";
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">'+(isRCTomorrow?'6:05':'6:15')+'</div><div class="psub">ברכו '+(isRCTomorrow?'6:15':'6:25')+'</div></div>'
       +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
-      +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">'+(isShachritGSpecialTomorrow?'8:15':'8:30')+'</div><div class="psub">ברכו '+(isShachritGSpecialTomorrow?'8:30':'8:45')+'</div></div>'
+      +'<div class="pc"><div class="pname">שחרית ג\'</div><div class="ptime">'+g3Tomorrow+'</div><div class="psub">ברכו '+brachuAfter(g3Tomorrow)+'</div></div>'
       +(isExtraMinyanTomorrow?'<div class="pc"><div class="pname">מניין נוסף — שחרית</div><div class="ptime">9:00</div><div class="psub"></div></div>':'')
       +'</div>';
   }
@@ -907,6 +912,11 @@ function addMins(t, mins) {
   if(!t) return null;
   var total = pt(t) + mins;
   return pad(Math.floor(total/60))+':'+pad(total%60);
+}
+
+function brachuAfter(t, mins) {
+  var r = addMins(t, mins===undefined?15:mins);
+  return r ? r.replace(/^0/,'') : r;
 }
 
 function renderShabbat() {
