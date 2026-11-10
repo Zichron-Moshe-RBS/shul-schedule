@@ -654,10 +654,11 @@ function getTodayPrayersRaw() {
   }
   var isRoshChodesh = (todayKey()===20260615||todayKey()===20260616||todayKey()===20260813||todayKey()===20260814||todayKey()===20261011||todayKey()===20261012||todayKey()===20261110||todayKey()===20261111);
   if (isRoshChodesh) {
+    var g3RC = p.g3 || "8:30";
     return [
       {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
-      {name:"שחרית ג'",time:"8:30",sub:"ברכו 8:45"},
+      {name:"שחרית ג'",time:g3RC,sub:"ברכו "+brachuAfter(g3RC)},
       {name:"מנחה גדולה",time:"13:20",sub:""},
       {name:"מנחה קטנה",time:p.mk,sub:""},
       {name:"מעריב א'",time:p.m1,sub:""},
