@@ -242,7 +242,7 @@ footer{text-align:center;padding:1.2rem;font-size:.7rem;color:#8b7355;border-top
       <div class="fr"><span class="fl">שחרית א׳</span><span class="ft">6:15 (ברכו 6:25)</span></div>
       <div class="fr"><span class="fl">שחרית א׳ ראש חודש</span><span class="ft">6:05 (ברכו 6:15)</span></div>
       <div class="fr"><span class="fl">שחרית ב׳</span><span class="ft">7:00 (ברכו 7:15)</span></div>
-      <div class="fr"><span class="fl">שחרית ג׳</span><span class="ft">8:30 (ברכו 8:45)</span></div>
+      <div class="fr"><span class="fl">שחרית ג׳</span><span class="ft">8:25 (ברכו 8:40)</span></div>
       <div class="fr"><span class="fl">מנחה גדולה</span><span class="ft">13:20</span></div>
       <div class="fr"><span class="fl">מנחה גדולה — יום שישי</span><span class="ft">13:30</span></div>
       <div class="fr"><span class="fl">מנחה</span><span class="ft">15 דק׳ לפני השקיעה</span></div>
@@ -592,7 +592,7 @@ function getTodayPrayersRaw() {
     ];
   }
   if (isFri) {
-    var g3Fri = p.g3 || "8:30";
+    var g3Fri = p.g3 || "8:25";
     var fri = [
       {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
@@ -654,7 +654,7 @@ function getTodayPrayersRaw() {
   }
   var isRoshChodesh = (todayKey()===20260615||todayKey()===20260616||todayKey()===20260813||todayKey()===20260814||todayKey()===20261011||todayKey()===20261012||todayKey()===20261110||todayKey()===20261111);
   if (isRoshChodesh) {
-    var g3RC = p.g3 || "8:30";
+    var g3RC = p.g3 || "8:25";
     return [
       {name:"שחרית א'",time:"6:05",sub:"ברכו 6:15"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
@@ -766,7 +766,7 @@ function getTodayPrayersRaw() {
   }
   var isErevRC = (todayKey()===20260514||todayKey()===20261109);
   if (isErevRC) {
-    var g3ErevRC = p.g3 || "8:30";
+    var g3ErevRC = p.g3 || "8:25";
     return [
       {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
       {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
@@ -777,7 +777,7 @@ function getTodayPrayersRaw() {
       {name:"מעריב ב'",time:"22:00",sub:""}
     ];
   }
-  var g3Def = p.g3 || "8:30";
+  var g3Def = p.g3 || "8:25";
   var def=[
     {name:"שחרית א'",time:"6:15",sub:"ברכו 6:25"},
     {name:"שחרית ב'",time:"7:00",sub:"ברכו 7:15"},
@@ -908,7 +908,7 @@ function renderToday() {
       +'</div>';
   } else {
     var isExtraMinyanTomorrow=(tomorrowKey>=20261004 && tomorrowKey<=20261009);
-    var g3Tomorrow = getRowForDate(tomorrowKey).g3 || "8:30";
+    var g3Tomorrow = getRowForDate(tomorrowKey).g3 || "8:25";
     shacharitTomorrow='<div class="pgrid">'
       +'<div class="pc"><div class="pname">שחרית א\'</div><div class="ptime">'+(isRCTomorrow?'6:05':'6:15')+'</div><div class="psub">ברכו '+(isRCTomorrow?'6:15':'6:25')+'</div></div>'
       +'<div class="pc"><div class="pname">שחרית ב\'</div><div class="ptime">7:00</div><div class="psub">ברכו 7:15</div></div>'
